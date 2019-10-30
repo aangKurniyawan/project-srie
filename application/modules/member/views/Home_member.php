@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li class="first-list"><a class="active" href="index.html">Beranda</a></li>
+							<li class="first-list"><a class="active" href="<?php echo site_url('home/');?>">Beranda</a></li>
 							<li><a href="<?php echo site_url('service/');?>">Layanan Kami</a></li>
 							<li><a href="<?php echo site_url('daftarMember/');?>">Daftar Member</a></li>
 							<li><a href="#myModal2" data-toggle="modal">Login Member</a></li>
@@ -79,74 +79,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		   </div>
     </div>
-  <!--/banner-section-->
-<!-- about -->
-	<!-- <div class="about-w3layouts">
-		<div class="col-md-6 col-sm-6 gallery-gridsa">
-		</div>
-		<div class="col-md-6 col-sm-6 gallery-grids2 right-w3ls-gridsa">
-			<h3>The best <span>C</span>leaning <span>s</span>ervice with <span>D</span>eterge</h3>
-			<div class="banner-grids-agileits">
-				<div class="grids-inner-wthree">
-					<div class="grids-right-wthree">
-						<i class="fa fa-tint i1" aria-hidden="true"></i>
-					</div>
-					<div class="grids-left-wthree">
-						<p>We use products which are</p> <span>Eco Friendly</span>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="grids-inner-wthree">
-					<div class="grids-right-wthree">
-						<i class="fa fa-spinner i2" aria-hidden="true"></i>
-					</div>
-					<div class="grids-left-wthree">
-						<p>Get clean your clothes with</p> <span>Best Equipments</span>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="grids-inner-wthree">
-					<div class="grids-right-wthree">
-						<i class="fa fa-check-square-o i3" aria-hidden="true"></i>
-					</div>
-					<div class="grids-left-wthree">
-						<p>Be sure your dress gets</p> <span>Right Treatment</span>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="about-mid-w3-agileits">
-			<div class="col-md-6 col-sm-6 gallery-grids2">
-				<h3 class="sub-tittle-agileits">Let us handle your dry <span>c</span>leaning & <span>l</span>aundry</h3>
-				<p class="para-w3-agile">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tellus sed mauvehicula tempor. In hac habitasse platea dictumst. Donec nunc nunc,interdum sed aliquet quis.Donec nunc nunc,interdum sed aliquet quis.</p>
-				<a href="#" class="button-w3layouts hvr-rectangle-out" data-toggle="modal" data-target="#myModal">Read more</a>
-			</div>
-			<div class="col-md-6 col-sm-6 gallery-gridsa2">
-			</div>
-			<div class="clearfix"></div>
-			<div class="col-md-6 col-sm-6 gallery-gridsa1">
-			</div>
-			<div class="col-md-6 col-sm-6 gallery-grids2">
-				<h3 class="sub-tittle-agileits"><span>W</span>ash ,<span>D</span>ry & <span>F</span>old</h3>
-				<p class="para-w3-agile">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar tellus sed mauvehicula tempor. In hac habitasse platea dictumst. Donec nunc nunc,interdum sed aliquet quis.</p>
-				<p class="para-w3-agile">conditum vitae enim. Quisque molestie consectetur urna quis scelerisque. Morbi at lectus sapien. Donec fgiat arcu in mi placerat ullamcorper.</p>
-				<a href="#" class="button-w3layouts hvr-rectangle-out" data-toggle="modal" data-target="#myModal">Read more</a>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div> -->
-	<div class="clearfix"></div>
-	<!-- //about -->
+
 <!-- services -->
 <div class="services-w3-agileits w3agileits-ref">
 	<div class="col-md-6  services-info">
 		<h6>Lihat Status Transaksi Anda <span>Disini </span></h6>
-		<p class="para-w3-agile">Masukan Kode Member Anda(No Telepon)</p>
+		<p class="para-w3-agile">Masukan Kode Member Anda(Email)</p>
 		<form action="#" method="post">		 
 			<input type="email" class="text" required="" />
-			<input type="submit" value="Go" />					 
+			<input type="submit" value="Cari" />					 
 		</form>
 		<div class="clearfix"></div>
 	</div>
@@ -257,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>	
 				<div class="col-md-4 test-grid2">
-					<img src="images/t4.jpg" alt="" class="img-r">
+					<img src="<?php echo base_url();?>assets_member/images/t4.jpg" alt="" class="img-r">
 				</div>
 			</div>	
 		<div class="clearfix"></div>
@@ -269,56 +210,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- agile_testimonials -->
 <!--footer -->
-	<div class="footer w3layouts">
-		<div class="container">
-			<div class="footer-row w3layouts-agile">
-				<div class="col-md-3 footer-grids w3l-agileits">
-					<h6><a href="index.html"><span class="f-letter">D</span>eterge<span class="f-square"></span></a></h6>
-				</div>
-				<div class="col-md-3 footer-grids w3l-agileits">
-					<h3>Alamat Kami</h3>
-					<p>Jl Raya Parungpanjang No.11,</p>
-					<p>Kecamatan Parungpanjang,</p>
-					<p>Bogor, Jawa Barat.</p>
-				</div>
-				<div class="col-md-3 footer-grids w3l-agileits">
-					<h3>Ikuti Kami</h3>
-					<div class="agileinfo-social-grids">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						</ul>
-					</div>
-					<div class="bottons-agileits-w3layouts">
-						<a class="btn1-w3-agileits" href="#myModal2" data-toggle="modal"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>.
-						<a class="btn2-w3-agileits" href="#myModal3" data-toggle="modal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Register</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="col-md-3 footer-grids w3l-agileits">	
-					<h3>Kirim Pertanyaan Anda</h3>
-					<p>0895-3152-9435<p>
-					<p><a href="mailto:info@example.com">admin@laundry.com</a></p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
+	<?php $this->load->view('menu/footer'); ?>
 <!--//footer-->	
-<!-- copy-right -->
-		<div class="copyright-wthree">
-			<div class="container">
-				<ul class="b-nav">
-					<li><a href="#home">Home</a></li>
-					<li><a href="about.html" >About</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-				<p>&copy; 2019 UNPAM . Sri Iftahur Rizkiah | Design by <a href="#"> Developer Kampus </a></p>
-			</div>
-		</div>
-<!-- //copy-right -->
+
 <!-- modal -->
 	<div class="modal about-modal w3-agileits fade" id="myModal2" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">

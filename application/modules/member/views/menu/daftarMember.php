@@ -27,157 +27,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <!-- header -->
-	<div class="inner-banner-w3layouts">
-		<div class="demo-inner-content">
-		<!--/header-w3l-->
-		<div class="header-w3-agileits" id="home">
-	<div class="w3-header-bottom">
-		<div class="container"> 
-				<h1><a href="index.html"><span class="letter">D</span>eterge<span class="square"></span></a></h1>	
-			<div class="header-w3-top">
-				<div class="agileinfo-phone">
-				<div class="phone-wthree-left">
-					
-					<i class="fa fa-volume-control-phone" aria-hidden="true"></i>
-					<p>Want a Launder...? <span>call us now!</span></p>
-				</div>
-				 <h2> +0 123 456 789</h2>
-				</div>
-			</div>
-			<div class="top-nav">
-						<nav class="navbar navbar-default">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-								</div>
-							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<ul class="nav navbar-nav">
-									<li class="first-list"><a href="index.html">Home</a></li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="services.html">Services</a></li>
-									<li><a href="gallery.html">Gallery</a></li>
-									<li class="dropdown">
-										<a href="codes.html" class="dropdown-toggle" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
-										<ul class="dropdown-menu">
-											<li><a href="icons.html">Icons</a></li>
-											<li><a href="codes.html">Short Codes</a></li>
-										</ul>
-									</li>
-									<li><a class="active" href="contact.html">Contact</a></li>
-								</ul>	
-								<div class="clearfix"> </div>
-							</div>	
-						</nav>		
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!--//header-w3l-->
-		</div>
-		   </div>
-    </div>
+<?php $this->load->view('menu/header_menu');?>
   <!--/banner-section-->
 <!-- contact -->
 	<div class="contact">
 		<div class="container">
-		<h4 class="tittles-w3agileits">Contact <span>U</span>s</h4>
+		<h4 class="tittles-w3agileits">Daftar <span>Member</span></h4>
 			<div class="col-md-4 wthree_contact_left">
-				<h6>About Us</h6>
-				<p class="para-w3-agile">Lorem ipsum <span>Household Laundry</span> dolor sit amet 
-					<span>Dry Cleaning</span> interdum sed aliquet quis.</p>
+				<h6>Ke Untungan Menjadi Member</h6>
+				<p class="para-w3-agile">Dapatkan <span>Pelayanan Spesial</span> dari kami 
+					<span>Untuk Kamu</span> Yang Terdaftar Sebagai Member</p>
 				<div class="info-img-agileits">
 					<div class="info1"></div>
 					<div class="info2"></div>
 					<div class="info3"></div>
 					<div class="clearfix"> </div>
 				</div>
-				<h6>Servicing Hours</h6>
+				<h6>Jam Operasional</h6>
 				<ul>
-					<li><span>Monday-Friday</span> 9:00 am - 10:00 pm </li>
-					<li><span>Saturday & Sunday</span> 9:00 am - 12:00 pm</li>
+					<li><span>Senin-Jum'at</span> 9:00 Pagi - 10:00 Malam </li>
+					<li><span>Sabtu & Minggu</span> 9:00 Pagi - 12:00 Malam</li>
 				</ul>
 			</div>
 			<div class="col-md-8 wthree_contact_left">
-				<h6>Send us an Email</h6>
+				<h6>Isi Data Anda Disini</h6>
 				<form action="#" method="post">
 						<div class="col-md-6 wthree_contact_left_grid">
-							<input type="text" name="Name" placeholder="Name" required="">
-							<input type="email" name="Email" placeholder="Email" required="">
+							<input type="text" name="Name" placeholder="Nama Lengkap" required="">
+							<input type="email" name="Email" placeholder="No Telepon" required="">
+							<!-- <input type="email" name="Email" placeholder="Email" required=""> -->
+							<select class="form-control" >
+								<option>-Pilih Jenis Kelamin-</option>
+								<option>Laki-laki</option>
+								<option>Perempuan</option>
+							</select>
 						</div>
-						<div class="col-md-6 wthree_contact_left_grid">
-							<input type="text" name="Telephone" placeholder="Telephone" required="">
-							<input type="text" name="Subject" placeholder="Subject" required="">
+						<div class="col-md-6 wthree_contact_left_grid agileits-login">
+							<input type="text" name="Telephone" placeholder="Email" required="">
+							<input type="password" class="password " name="Password" placeholder="Password" required=""/>
 						</div>
 						<div class="clearfix"> </div>
-						<textarea name="Message" placeholder="Message..." required=""></textarea>
-						<input type="submit" value="Submit">
-						<input type="reset" value="Clear">
+						<textarea name="Message" placeholder="Alamat..." required=""></textarea>
+						<input type="submit" value="Daftar">
+						<input type="reset" value="Batal">
 					</form>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<div class="map-agileits">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100940.22729225444!2d-122.5076400483969!3d37.75763782704338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085878f7a47d775%3A0x340c07c56f992a38!2sBeach+Wash!5e0!3m2!1sen!2sin!4v1499246275767"></iframe>
-	</div>
+	
 <!-- //contact -->
 <!--footer -->
-	<div class="footer w3layouts">
-		<div class="container">
-			<div class="footer-row w3layouts-agile">
-				<div class="col-md-3 footer-grids w3l-agileits">
-					<h6><a href="index.html"><span class="f-letter">D</span>eterge<span class="f-square"></span></a></h6>
-				</div>
-				<div class="col-md-3 footer-grids w3l-agileits">
-					<h3>Address</h3>
-					<p>3745 Noriega St,</p>
-					<p>San Francisco,</p>
-					<p>CA 94122, USA.</p>
-				</div>
-				<div class="col-md-3 footer-grids w3l-agileits">
-					<h3>Connect with us</h3>
-					<div class="agileinfo-social-grids">
-						<ul>
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-rss"></i></a></li>
-							<li><a href="#"><i class="fa fa-vk"></i></a></li>
-						</ul>
-					</div>
-					<div class="bottons-agileits-w3layouts">
-						<a class="btn1-w3-agileits" href="#myModal2" data-toggle="modal"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>.
-						<a class="btn2-w3-agileits" href="#myModal3" data-toggle="modal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Register</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="col-md-3 footer-grids w3l-agileits">	
-					<h3>Questions....?</h3>
-					<p>+0 123 456 789<p>
-					<p><a href="mailto:info@example.com">mail@example.com</a></p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
+	<?php $this->load->view('menu/footer'); ?>
 <!--//footer-->	
-<!-- copy-right -->
-		<div class="copyright-wthree">
-			<div class="container">
-				<ul class="b-nav">
-					<li><a href="#home">Home</a></li>
-					<li><a href="about.html" >About</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-				<p>&copy; 2017 Deterge . All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts </a></p>
-			</div>
-		</div>
-<!-- //copy-right -->
 <!-- modal -->
 	<div class="modal about-modal w3-agileits fade" id="myModal2" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
