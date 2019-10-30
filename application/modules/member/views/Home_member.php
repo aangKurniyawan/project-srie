@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li class="first-list"><a class="active" href="index.html">Beranda</a></li>
-							<li><a href="about.html">Layanan Kami</a></li>
+							<li><a href="<?php echo site_url('service/');?>">Layanan Kami</a></li>
 							<li><a href="services.html">Daftar Member</a></li>
 							<li><a href="gallery.html">Login Member</a></li>
 							<li><a href="contact.html">Kontak</a></li>
