@@ -13,3 +13,7 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['kontak']		= "member/member_c/kontak_menu";
 	$route['daftarMember']  = "member/member_c/daftar_member";
 /* ROUTE MENU */
+
+/* ROUTE OPERATOR */
+	$route['operator'] 		= "operator/operator_c/index";
+/* ROUTE OPERATOR */

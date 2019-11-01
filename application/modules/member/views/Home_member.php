@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<i class="fa fa-shirtsinbulk i1" aria-hidden="true"></i>
 			<div class="serv-rt-w3-agile">
 				<h5>Dry Cleaning</h5>
-				<p>Lorem ipsum dolor sit amet </p>
+				<p>Nikmati layanan Dry Cleaning Untuk Transaksi Anda </p>
 			</div>
 			<div class="clearfix"></div>
 		</div>
