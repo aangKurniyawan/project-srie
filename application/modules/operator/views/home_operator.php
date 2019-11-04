@@ -62,13 +62,20 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
+            <i class="fa fa-edit"></i>
+            <span>Transaksi</span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Forms</span>
+             <i class="fa fa-laptop"></i>
+             <span>Data Transaksi</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+             <i class="fa fa-files-o"></i>
+             <span>Logout</span>
           </a>
         </li>
       </ul>
@@ -163,11 +170,187 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-8">
-                  <label>buat form transaksi</label>
+                   <div class="box box-danger">
+                      <!-- <div class="box-header with-border">
+                        <h3 class="box-title">Form Tambah Transaksi</h3>
+                      </div> -->
+                      <div class="box-body">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                              <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="masukan kode member">
+                                    <span class="input-group-btn">
+                                      <button type="button" class="btn btn-info btn-flat">Cari</button>
+                                    </span>
+                              </div>
+                            </div>
+                            <!-- <div class="col-sm-3" style="background-color:pink;">
+                              <p>Sed ut perspiciatis...</p>
+                            </div> -->
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>Nama Member</label>
+                                  <input type="text" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="background-color:;">
+                              <div class="form-group">
+                                  <label>Jenis Laundry</label>
+                                  <select class="form-control">
+                                    <option>Pilihan 1</option>
+                                    <option>Pilihan 2</option>
+                                    <option>Pilihan 3</option>
+                                  </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>No Telepon</label>
+                                  <input type="text" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>Berat Cuci</label>
+                                  <input type="text" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>Alamat</label>
+                                  <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="background-color:;">
+                               <div class="form-group">
+                                  <label>Jenis Cucian</label>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox">
+                                      Checkbox 1
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox">
+                                      Checkbox 1
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox">
+                                      Checkbox 1
+                                    </label>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="background-color:;">
+                               <div class="form-group">
+                                  <label></label>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox">
+                                      Checkbox 1
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox">
+                                      Checkbox 1
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox">
+                                      Checkbox 1
+                                    </label>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <button type="button" class="form-control bg-maroon">Simpan Data</button>
+                               </div>
+                            </div>
+                            <div class="col-sm-6" style="background-color:;">
+                                <div class="form-group">
+                                  <button type="reset" class="form-control bg-navy">Batal</button>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.box-body -->
+                    </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-md-4">
-                  <label>buat list transaksi</label>
+                   <div class="box">
+                      <div class="box-header with-border">
+                        <center><h3 class="box-title">Transaksi Hari Ini</h3></center>
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Nama Member</th>
+                            <th>Status</th>
+                            <th style="width: 40px">Detail</th>
+                          </tr>
+                          <tr>
+                            <td>1.</td>
+                            <td>Update software</td>
+                            <td><span class="badge bg-red">batal</span></td>
+                              <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>2.</td>
+                            <td>Clean database</td>
+                            <td><span class="badge bg-blue">proses</span></td>
+                             <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>3.</td>
+                            <td>Cron job running</td>
+                            <td><span class="badge bg-blue">proses</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>4.</td>
+                            <td>Fix and squish bugs</td>
+                            <td><span class="badge bg-green">selesai</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>4.</td>
+                            <td>Fix and squish bugs</td>
+                            <td><span class="badge bg-green">selesai</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+
+                        </table>
+                      </div>
+                      <!-- /.box-body -->
+                      <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                          <li><a href="#">&laquo;</a></li>
+                          <li><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">&raquo;</a></li>
+                        </ul>
+                      </div>
+                    </div>
                 </div>
                 <!-- /.col -->
               </div>
