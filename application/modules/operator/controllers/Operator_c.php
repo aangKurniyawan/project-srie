@@ -4,5 +4,9 @@
 		public function index(){
 			$this->load->view('home_operator');
 		}
+
+		public function menu_data_transaksi(){
+			$this->load->view('menu/data_transaksi');
+		}
 	}
 ?>

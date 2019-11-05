@@ -45,51 +45,15 @@
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?php echo base_url();?>assets_operator/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Alexander Pierce</p>
-        </div>
-      </div>
-  
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i>
-            <span>Transaksi</span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-             <i class="fa fa-laptop"></i>
-             <span>Data Transaksi</span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-             <i class="fa fa-files-o"></i>
-             <span>Logout</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+  <?php $this->load->view('menu/menu') ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Version 2.0</small>
+        Data Hari Ini
+        <small>12 November 2019</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -106,8 +70,8 @@
             <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
+              <span class="info-box-text">Tota Transaksi</span>
+              <span class="info-box-number">90</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -119,8 +83,8 @@
             <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Likes</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Transaksi Batal</span>
+              <span class="info-box-number">10</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -136,8 +100,8 @@
             <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Sales</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-text">Transaksi Selesai</span>
+              <span class="info-box-number">60</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -149,8 +113,8 @@
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">New Members</span>
-              <span class="info-box-number">2,000</span>
+              <span class="info-box-text">Transaksi Proses</span>
+              <span class="info-box-number">20</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -193,16 +157,17 @@
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>Nama Member</label>
-                                  <input type="text" class="form-control" placeholder="Enter ...">
+                                  <input type="text" class="form-control" placeholder="Nama Pelanggan">
                                 </div>
                             </div>
                             <div class="col-sm-6" style="background-color:;">
                               <div class="form-group">
                                   <label>Jenis Laundry</label>
                                   <select class="form-control">
-                                    <option>Pilihan 1</option>
-                                    <option>Pilihan 2</option>
-                                    <option>Pilihan 3</option>
+                                    <option>Dry Cleaning</option>
+                                    <option>Pressing</option>
+                                    <option>Laundry</option>
+                                    <option>Pickup & Delivery</option>
                                   </select>
                                 </div>
                             </div>
@@ -211,13 +176,13 @@
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>No Telepon</label>
-                                  <input type="text" class="form-control" placeholder="Enter ...">
+                                  <input type="text" class="form-control" placeholder="No Telepon">
                                 </div>
                             </div>
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>Berat Cuci</label>
-                                  <input type="text" class="form-control" placeholder="Enter ...">
+                                  <input type="text" class="form-control" placeholder="Berat Cuci">
                                 </div>
                             </div>
                           </div>
@@ -234,19 +199,19 @@
                                   <div class="checkbox">
                                     <label>
                                       <input type="checkbox">
-                                      Checkbox 1
+                                      Celana Jeans
                                     </label>
                                   </div>
                                   <div class="checkbox">
                                     <label>
                                       <input type="checkbox">
-                                      Checkbox 1
+                                      Kaos
                                     </label>
                                   </div>
                                   <div class="checkbox">
                                     <label>
                                       <input type="checkbox">
-                                      Checkbox 1
+                                      Jas
                                     </label>
                                   </div>
                                 </div>
@@ -257,19 +222,19 @@
                                   <div class="checkbox">
                                     <label>
                                       <input type="checkbox">
-                                      Checkbox 1
+                                      Sprei
                                     </label>
                                   </div>
                                   <div class="checkbox">
                                     <label>
                                       <input type="checkbox">
-                                      Checkbox 1
+                                      Pakaian
                                     </label>
                                   </div>
                                   <div class="checkbox">
                                     <label>
                                       <input type="checkbox">
-                                      Checkbox 1
+                                      Selimut
                                     </label>
                                   </div>
                                 </div>
@@ -300,6 +265,12 @@
                       </div>
                       <!-- /.box-header -->
                       <div class="box-body">
+                        <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="masukan kode member">
+                                    <span class="input-group-btn">
+                                      <button type="button" class="btn btn-info btn-flat">Cari</button>
+                                    </span>
+                              </div>
                         <table class="table table-bordered">
                           <tr>
                             <th style="width: 10px">#</th>
@@ -309,31 +280,31 @@
                           </tr>
                           <tr>
                             <td>1.</td>
-                            <td>Update software</td>
+                            <td>Mahmud</td>
                             <td><span class="badge bg-red">batal</span></td>
                               <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
                           <tr>
                             <td>2.</td>
-                            <td>Clean database</td>
+                            <td>Yayah</td>
                             <td><span class="badge bg-blue">proses</span></td>
                              <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
                           <tr>
                             <td>3.</td>
-                            <td>Cron job running</td>
+                            <td>Rosiana Dewi</td>
                             <td><span class="badge bg-blue">proses</span></td>
                             <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
                           <tr>
                             <td>4.</td>
-                            <td>Fix and squish bugs</td>
+                            <td>Umi Maryam</td>
                             <td><span class="badge bg-green">selesai</span></td>
                             <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
                           <tr>
-                            <td>4.</td>
-                            <td>Fix and squish bugs</td>
+                            <td>5.</td>
+                            <td>Nita Angraeni</td>
                             <td><span class="badge bg-green">selesai</span></td>
                             <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
