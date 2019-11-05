@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Mailbox</title>
+  <title>Laundry | Data Transaksi</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -113,6 +113,7 @@
                   <th>Nama</th>
                   <th>Jenis Laundry</th>
                   <th>Harga</th>
+                  <th>Status</th>
                   <th>Detail</th>
                 </tr>
                 </thead>
@@ -122,49 +123,56 @@
                   <td>Nintendo DS browser</td>
                   <td>Nintendo DS</td>
                   <td>8.5</td>
-                  <td>C/A<sup>1</sup></td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 <tr>
                   <td>Tasman</td>
                   <td>Internet Explorer 4.5</td>
                   <td>Mac OS 8-9</td>
                   <td>-</td>
-                  <td>X</td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 <tr>
                   <td>Misc</td>
                   <td>Links</td>
                   <td>Text only</td>
                   <td>-</td>
-                  <td>X</td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 <tr>
                   <td>Misc</td>
                   <td>Lynx</td>
                   <td>Text only</td>
                   <td>-</td>
-                  <td>X</td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 <tr>
                   <td>Misc</td>
                   <td>IE Mobile</td>
                   <td>Windows Mobile 6</td>
                   <td>-</td>
-                  <td>C</td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 <tr>
                   <td>Misc</td>
                   <td>PSP browser</td>
                   <td>PSP</td>
                   <td>-</td>
-                  <td>C</td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 <tr>
                   <td>Other browsers</td>
                   <td>All others</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>U</td>
+                  <td>-</td>
+                  <td><button type="button" class="bg-navy">Detail</button></td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -173,6 +181,7 @@
                   <th>Nama</th>
                   <th>Jenis Laundry</th>
                   <th>Harga</th>
+                  <th>Status</th>
                   <th>Detail</th>
                 </tr>
                 </tfoot>
