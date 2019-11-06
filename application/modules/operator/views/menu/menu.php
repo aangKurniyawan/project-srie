@@ -25,15 +25,15 @@
              <span>Data Transaksi</span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
+        <li class="">
+          <a href="<?php echo site_url('profileOperator/');?>">
              <i class="fa fa-male"></i>
              <span>Profil Saya</span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
-             <i class="fa fa-files-o"></i>
+             <i class="fa fa-power-off"></i>
              <span>Logout</span>
           </a>
         </li>

@@ -65,62 +65,74 @@
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Tota Transaksi</span>
-              <span class="info-box-number">90</span>
+              <p>Total Transaksi</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Transaksi Batal</span>
-              <span class="info-box-number">10</span>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53</h3>
 
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Transaksi Selesai</span>
-              <span class="info-box-number">60</span>
+              <p>Transaksi Selesai</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Transaksi Proses</span>
-              <span class="info-box-number">20</span>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>Transaksi Dalam Proses</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Transaksi Batal</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
       </div>
       <!-- /.row -->
 
@@ -282,7 +294,11 @@
                             <td>1.</td>
                             <td>Mahmud</td>
                             <td><span class="badge bg-red">batal</span></td>
-                              <td><button type="reset" class="bg-navy">Detail</button></td>
+                              <td>
+                                <a href="<?php echo site_url('detailTransaksi/');?>">
+                                  <button type="reset" class="bg-navy">Detail</button>
+                                </a>
+                              </td>
                           </tr>
                           <tr>
                             <td>2.</td>
@@ -337,12 +353,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; Sri Iftahur Rizkiyah</strong>
-  </footer>
+  <?php $this->load->view("menu/footer");?>
 
   <div class="control-sidebar-bg"></div>
 

@@ -15,6 +15,8 @@ $route['translate_uri_dashes'] 	= TRUE;
 /* ROUTE MENU */
 
 /* ROUTE OPERATOR */
-	$route['operator'] 		= "operator/operator_c/index";
-	$route['dataTransaksi'] = "operator/operator_c/menu_data_transaksi";
+	$route['operator'] 			= "operator/operator_c/index";
+	$route['dataTransaksi'] 	= "operator/operator_c/menu_data_transaksi";
+	$route['profileOperator'] 	= "operator/operator_c/menu_profile";
+	$route['detailTransaksi']   = "operator/operator_c/detail_transaksi";
 /* ROUTE OPERATOR */
