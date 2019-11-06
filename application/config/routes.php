@@ -20,3 +20,7 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['profileOperator'] 	= "operator/operator_c/menu_profile";
 	$route['detailTransaksi']   = "operator/operator_c/detail_transaksi";
 /* ROUTE OPERATOR */
+
+/* ROUTE PENGELOLA */
+	$route['pengelola'] = "pengelola/pengelola_c/index";
+/* ROUTE PENGELOLA */
