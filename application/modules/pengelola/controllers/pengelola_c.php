@@ -4,5 +4,9 @@
 		public function index(){
 			$this->load->view('Pengelola/home_pengelola');
 		}
+
+		public function menu_user(){
+			$this->load->view('Pengelola/menu/menu_user');
+		}
 	}
 ?>

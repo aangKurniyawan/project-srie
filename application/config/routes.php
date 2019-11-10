@@ -23,4 +23,5 @@ $route['translate_uri_dashes'] 	= TRUE;
 
 /* ROUTE PENGELOLA */
 	$route['pengelola'] = "pengelola/pengelola_c/index";
+	$route['menuUser']  = "pengelola/pengelola_c/menu_user";
 /* ROUTE PENGELOLA */
