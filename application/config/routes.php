@@ -22,6 +22,10 @@ $route['translate_uri_dashes'] 	= TRUE;
 /* ROUTE OPERATOR */
 
 /* ROUTE PENGELOLA */
-	$route['pengelola'] = "pengelola/pengelola_c/index";
-	$route['menuUser']  = "pengelola/pengelola_c/menu_user";
+	$route['pengelola']     	= "pengelola/pengelola_c/index";
+	$route['menuUser']      	= "pengelola/pengelola_c/menu_user";
+	$route['menuService']   	= "pengelola/pengelola_c/menu_service"; 
+	$route['menuTransaksi'] 	= "pengelola/pengelola_c/menu_transaksi";
+	$route['menuProfile']   	= "pengelola/pengelola_c/menu_profile_outlet";
+	$route['profilePengelola'] 	= "pengelola/pengelola_c/menu_profile_pengelola"; 
 /* ROUTE PENGELOLA */
