@@ -27,5 +27,9 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['menuService']   	= "pengelola/pengelola_c/menu_service"; 
 	$route['menuTransaksi'] 	= "pengelola/pengelola_c/menu_transaksi";
 	$route['menuProfile']   	= "pengelola/pengelola_c/menu_profile_outlet";
-	$route['profilePengelola'] 	= "pengelola/pengelola_c/menu_profile_pengelola"; 
+	$route['profilePengelola'] 	= "pengelola/pengelola_c/menu_profile_pengelola";
+	$route['addUser'] 			= "pengelola/pengelola_c/tambahUser";
+	$route['editUser/:any'] 	= "pengelola/pengelola_c/formEdit/";
+	$route['edit'] 				= "pengelola/pengelola_c/editUser/";
+	$route['hapusAkun/:any'] 	= "pengelola/pengelola_c/hapusUser/";
 /* ROUTE PENGELOLA */

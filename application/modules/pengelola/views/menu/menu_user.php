@@ -64,30 +64,63 @@
           </div>
         </div>
         <!-- /.box-header -->
+        <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('success'); ?>
+        </div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('duplicat')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('duplicat'); ?>
+        </div>
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('gagal')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('gagal'); ?>
+        </div>
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('delete')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('delete'); ?>
+        </div>
+        <?php endif; ?>
         <div class="box-body">
           <div class="row">
             <div class="col-md-6">
-             <form role="form">
+             <form action="<?php echo base_url('addUser');?>" method="post" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama Lengkap</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <input class="form-control <?php echo form_error('nama_user') ? 'is-invalid':'' ?>"
+                    type="text" name="nama_user" placeholder="Nama Lengkap" />
+                  <div class="invalid-feedback">
+                    <?php echo form_error('nama_user') ?>
+                  </div>
+                  <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">No Telepon</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input class="form-control <?php echo form_error('no_telepon') ? 'is-invalid':'' ?>"
+                    type="text" name="no_telepon" placeholder="Nomer Telepon" />
+                  <div class="invalid-feedback">
+                    <?php echo form_error('no_telepon') ?>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Gender</label>
-                  <select class="form-control">
-                    <option>-Pilih Gender-</option>
-                    <option>Laki-Laki</option>
-                    <option>Perempuan</option>
+                  <select class="form-control" name="gender">
+                    <option >-Pilih Gender-</option>
+                    <option value="laki-laki">Laki-Laki</option>
+                    <option value="perempuan">Perempuan</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Alamat Lengkap</label>
-                  <textarea class="form-control"></textarea>
+                  <textarea class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>"
+                   name="alamat" placeholder="alamat..."></textarea>
+                  <div class="invalid-feedback">
+                    <?php echo form_error('alamat') ?>
+                  </div>
                 </div>
               </div>
             </div>
@@ -96,20 +129,33 @@
               <div class="box-body">
               <div class="form-group">
                   <label for="exampleInputEmail1">Level User</label>
-                  <select class="form-control">
+                  <select class="form-control" name="level">
                     <option>-Pilih Level-</option>
-                    <option>Member</option>
-                    <option>Operator</option>
-                    <option>Pengelola</option>
+                    <option value="Member">Member</option>
+                    <option value="Operator">Operator</option>
+                    <option value="Pengelola">Pengelola</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Alamat Email</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input class="form-control <?php echo form_error('email') ? 'is-invalid':'' ?>"
+                    type="email" name="email" placeholder="Email Anda" />
+                  <div class="invalid-feedback">
+                    <?php echo form_error('email') ?>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <input class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>"
+                    type="password" name="password" placeholder="Password" />
+                  <div class="invalid-feedback">
+                    <?php echo form_error('password') ?>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Foto</label>
+                  <input class="form-control"
+                    type="file" name="foto" placeholder="foto" />
                 </div>
                 <div class="form-group">
                   <input type="submit" class="btn bg-maroon btn-flat margin" value="Simpan Data">
@@ -135,6 +181,7 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Lengkap</th>
+                  <th>Gender</th>
                   <th>No Telepon</th>
                   <th>Alamat Lengkap</th>
                   <th>Level</th>
@@ -143,164 +190,30 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php foreach($user as $users):
+                  $no = 1;
+                ?>
                 <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
+                  <td><?php echo $no++?></td>
+                  <td><?php echo $users->nama_user ?></td>
+                  <td><?php echo $users->gender ?></td>
+                  <td><?php echo $users->no_telepon ?></td>
+                  <td><?php echo $users->alamat ?></td>
+                  <td><?php echo $users->level ?></td>
+                  <td><?php echo $users->email ?></td>
+                  <td> 
+                    <a href="<?php echo base_url('editUser/'.$users->id_user)?>"class="btn bg-purple btn-flat margin">
+                      <i class="fa  fa-eye"></i> Detail
+                    </a>
+                  </td>
                 </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
+              <?php endforeach;?>
                 </tbody>
                 <tfoot>
                 <tr>
                   <th>No</th>
                   <th>Nama Lengkap</th>
+                  <th>Gender</th>
                   <th>No Telepon</th>
                   <th>Alamat Lengkap</th>
                   <th>Level</th>
