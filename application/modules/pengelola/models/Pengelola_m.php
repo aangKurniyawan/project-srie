@@ -1,7 +1,8 @@
 <?php 
  	defined('BASEPATH') OR exit('No direct access allowed');
  	class Pengelola_m extends CI_Model{
- 		private $_table = "tb_user";
+
+ 		private $_table 	= "tb_user";
  		public $id_user;
  		public $nama_user;
  		public $gender;
@@ -57,7 +58,9 @@
  				// 	'label' => 'Foto',
  				// 	'rules' => 'required'
  				// ]
+
  			];
+ 			
  		}
 
  		public function getAllUser(){
@@ -82,7 +85,7 @@
  			$this->email 		= $post["email"];
  			$this->password 	= $post["password"];
  			$this->level 		= $post["level"];
- 			$this->foto 		= "default.jpg";
+ 			$this->foto 		= $this->uploadImageUser();
  			$this->created 		= $now;
  			$this->deleted 		= 0;
  			$this->db->insert($this->_table,$this);
@@ -107,14 +110,44 @@
  			$this->email 		= $post["email"];
  			$this->password 	= $post["password"];
  			$this->level 		= $post["level"];
- 			// $this->foto 		= $post["foto"];
+
+ 			if(!empty($_FILES['foto']['name'])){
+ 				$this->foto = $this->uploadImageUser();
+ 			}else{
+ 				$this->foto = $post['old_image'];
+ 			}
+
  			$this->db->update($this->_table,$this,array('id_user' => $post['id_user']));
  		}
 
  		public function deleteUser($id_user){
  			//print_r($id_user);die;
+ 			//$this->hapusFotoUser($id_user);
  			$query = $this->db->query("UPDATE tb_user SET deleted='1' WHERE id_user='$id_user'");
  			return $query;
  		}
+
+ 		private function uploadImageUser(){
+			$config['upload_path'] 		= "assets_pengelola/image/user_image/";
+			$config['allowed_types'] 	= "gif|jpg|png";
+			$config['file_name'] 		= $_FILES['foto']['name'];
+			$config['overwrite'] 		= true;
+			$config['max_size'] 		= 1024;
+
+			$this->load->library('upload',$config);
+
+			if($this->upload->do_upload('foto')){
+				return $this->upload->data('file_name');
+			}
+			return "default.jpg";
+		}
+
+		private function hapusFotoUser($id_user){
+			$user = $this->getByIdUser($id_user);
+			if($user->foto != "default.jpg"){
+				$filename = explode(".", $user->foto)[0];
+				return array_map('unlink',glob(FCPATH."assets_pengelola/image/user_image/$filename.*"));
+			}
+		}
  	}
 ?>

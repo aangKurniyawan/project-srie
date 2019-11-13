@@ -57,7 +57,8 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>assets_pengelola/dist/img/user4-128x128.jpg" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" 
+              src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $users['foto'] ?>" alt="User profile picture">
 
               <h3 class="profile-username text-center"><?php echo $users['nama_user'] ?></h3>
 
@@ -192,6 +193,8 @@
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label">Foto Profile</label>
                     <div class="col-sm-10">
+                       <input class="form-control"
+                        type="hidden" name="old_image"  value="<?php echo $users['foto'] ?>" />
                        <input class="form-control"
                         type="file" name="foto"  value="<?php echo $users['foto'] ?>" />
                     </div>

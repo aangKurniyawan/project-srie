@@ -5,6 +5,7 @@
 		public function __construct(){
 			parent:: __construct();
 			$this->load->model('pengelola/Pengelola_m');
+			$this->load->model('pengelola/Jenis_cuci_m');
 			$this->load->library('form_validation');
 		}
 		public function index(){
@@ -17,7 +18,8 @@
 		}
 
 		public function menu_service(){
-			$this->load->view('Pengelola/menu/menu_jenis_cuci');
+			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
+			$this->load->view('Pengelola/menu/menu_jenis_cuci',$data);
 		}
 
 		public function menu_transaksi(){
@@ -37,7 +39,6 @@
 					$no_telepon = $this->input->post('no_telepon'),
 					$email = $this->input->post('email')
 				);
-			//print_r($data);die;
 			$user = $this->Pengelola_m;
 			$validation = $this->form_validation;
 			$validation->set_rules($user->rules());
@@ -53,15 +54,10 @@
 				$this->session->set_flashdata('gagal','gagal disimpan');
 				}
 			}
-			
-			
 			$data['user'] = $this->Pengelola_m->getAllUser();
 			$this->load->view('Pengelola/menu/menu_user',$data);
 		}
 
-		// public function formEditUser($id_user = null){
-		// 	$this->load->view('Pengelola/menu/profile_user');
-		// }
 		public function formEdit($id_user = null){
 			$id_user = $this->uri->segment(2);
 			
@@ -111,6 +107,24 @@
 				$this->session->set_flashdata('delete','Berhasil dihapus');
 				redirect(site_url('pengelola/Pengelola_c/menu_user'));
 			}
+		}
+
+		public function tambahJenisCuci(){
+			
+			$jenis = $this->Jenis_cuci_m;
+			//print_r($jenis);die;
+			$validation = $this->form_validation;
+			$validation->set_rules($jenis->rules_jenis_cuci());
+			
+			if($validation->run()){
+				$jenis->saveJenisCuci();
+				$this->session->set_flashdata('cuci','Berhasil disimpan');
+			}else{
+				$this->session->set_flashdata('gagal','gagal disimpan');
+			}
+
+			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
+			$this->load->view('Pengelola/menu/menu_jenis_cuci',$data);
 		}
 	}
 ?>

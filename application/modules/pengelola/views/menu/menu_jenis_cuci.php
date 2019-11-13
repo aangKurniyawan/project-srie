@@ -47,62 +47,102 @@
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Dashboard</a></li>
-        <li class="active">User Data</li>
+        <li class="active">Data Jenis Cuci</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
+       <?php if ($this->session->flashdata('cuci')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('cuci'); ?>
+        </div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('duplicat')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('duplicat'); ?>
+        </div>
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('gagal')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('gagal'); ?>
+        </div>
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('delete')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('delete'); ?>
+        </div>
+        <?php endif; ?>
        <div class="row">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Monthly Recap Report</h3>
+              <h3 class="box-title">Data Master Jenis Cuci</h3>
 
-              <div class="box-tools pull-right">
+              <!-- <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
+              </div> -->
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
                 <div class="col-md-6">
                   <div class="chart">
-                   <form role="form">
+                   <form action="<?php echo base_url('addJenisCuci');?>" method="post" role="form">
                     <div class="box-body">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Jenis Cuci</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <label for="exampleInputPassword1">Nama Jenis Cuci</label>
+                        <input class="form-control" type="hidden" name="id_user" value="5" />
+                        <input class="form-control <?php echo form_error('nama_jenis') ? 'is-invalid':'' ?>"
+                          type="text" name="nama_jenis" placeholder="Nama Jenis Cuci" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('nama_jenis') ?>
+                        </div>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">Harga</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>"
+                          type="text" name="harga" placeholder="Harga" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('harga') ?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Lama Pengerjaan</label>
+                        <select class="form-control <?php echo form_error('lama_hari') ? 'is-invalid':'' ?>" name="lama_hari">
+                          <option>-Pilih Lama Waktu-</option>
+                          <option>4 Jam</option>
+                          <option>1 Hari</option>
+                          <option>2 Hari</option>
+                          <option>3 Hari</option>
+                          <option>4 Hari</option>
+                          <option>5 Hari</option>
+                          <option>6 Hari</option>
+                          <option>7 Hari</option>
+                        </select>
+                         <div class="invalid-feedback">
+                          <?php echo form_error('lama_hari') ?>
+                        </div>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">Status</label>
-                        <select class="form-control">
+                        <select class="form-control <?php echo form_error('status') ? 'is-invalid':'' ?>" name="status">
                           <option>-Pilih Status-</option>
                           <option>Aktif</option>
                           <option>Tidak Aktif</option>
-                          <option>Menunggu</option>
                         </select>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('status') ?>
+                        </div>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">Deskripsi Jenis Cuci</label>
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control <?php echo form_error('deskripsi') ? 'is-invalid':'' ?>" name="deskripsi">
+                        </textarea>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('deskripsi') ?>
+                        </div>
                       </div>
                       <div class="form-group">
                         <input type="submit" class="btn bg-maroon btn-flat margin" value="Simpan Data">
@@ -118,73 +158,40 @@
                     <h3 class="box-title">Data Jenis Cuci</h3>
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body">
-                    <table class="table table-bordered">
-                      <tr>
-                        <th style="width: 10px">#</th>
-                        <th>Nama Jenis Cuci</th>
-                        <th>Harga</th>
-                        <th>Status</th>
-                        <th>Detail</th>
-                      </tr>
-                      <tr>
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>
-                          <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-red">55%</span></td>
-                        <td><span class="badge bg-red">55%</span></td>
-                      </tr>
-                      <tr>
-                        <td>2.</td>
-                        <td>Clean database</td>
-                        <td>
-                          <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-yellow">70%</span></td>
-                        <td><span class="badge bg-red">55%</span></td>
-                      </tr>
-                      <tr>
-                        <td>3.</td>
-                        <td>Cron job running</td>
-                        <td>
-                          <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-light-blue">30%</span></td>
-                        <td><span class="badge bg-red">55%</span></td>
-                      </tr>
-                      <tr>
-                        <td>4.</td>
-                        <td>Fix and squish bugs</td>
-                        <td>
-                          <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-green">90%</span></td>
-                        <td><span class="badge bg-red">55%</span></td>
-                      </tr>
-                    </table>
-                  </div>
-                  <!-- /.box-body -->
-                  <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                      <li><a href="#">&laquo;</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
-                </div>
-                </div>
+                   <div class="box">
+                    <div class="box-body">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Layanan</th>
+                          <th>Harga</th>
+                          <th>Pengerjaan</th>
+                          <th>Status</th>
+                          <th>Detail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                           foreach($jenis as $data): 
+                           $no = 1;
+                        ?>
+                        <tr>
+                          <td><?php echo $no++ ;?></td>
+                          <td><?php echo $data['nama_jenis'];?></td>
+                          <td><?php echo $data['harga'];?></td>
+                          <td><?php echo $data['lama_hari'];?></td>
+                          <td><?php echo $data['status'];?></td>
+                          <td>C</td>
+                        </tr>
+                       <?php endforeach;?>
+                        </tfoot>
+                      </table>
+                        </div>
+                          <!-- /.box-body -->
+                        </div>
+                      </div>
+                    </div>
                 <!-- /.col -->
               </div>
               <!-- /.row -->

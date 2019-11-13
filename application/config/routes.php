@@ -32,4 +32,5 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['editUser/:any'] 	= "pengelola/pengelola_c/formEdit/";
 	$route['edit'] 				= "pengelola/pengelola_c/editUser/";
 	$route['hapusAkun/:any'] 	= "pengelola/pengelola_c/hapusUser/";
+	$route['addJenisCuci'] 		= "pengelola/pengelola_c/tambahJenisCuci";
 /* ROUTE PENGELOLA */
