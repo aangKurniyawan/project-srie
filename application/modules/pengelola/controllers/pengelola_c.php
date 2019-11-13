@@ -126,5 +126,25 @@
 			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
 			$this->load->view('Pengelola/menu/menu_jenis_cuci',$data);
 		}
+
+		public function editJenisCuci(){
+			$id_jenis_cuci = $this->input->post("id_jenis_cuci");
+			// print_r($id_jenis_cuci);die;
+			if(!isset($id_jenis_cuci)) redirect('pengelola/Pengelola_c/menu_jenis_cuci');
+
+			$jenis = $this->Jenis_cuci_m;
+			$validation = $this->form_validation;
+			$validation->set_rules($jenis->rules_jenis_cuci());
+
+			if($validation->run()){
+				$jenis->updateJenisCuci();
+				$this->session->set_flashdata('berhasilCuci','Berhasil disimpan');
+			}else{
+				$this->session->set_flashdata('gagalCuci','Gagagl disimpan');
+			}
+
+			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
+			$this->load->view('Pengelola/menu/menu_jenis_cuci',$data);
+		}
 	}
 ?>

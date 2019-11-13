@@ -62,5 +62,18 @@
  			$this->deleted 		= 0;
  			$this->db->insert($this->tb_jenis,$this);
  		}
+
+ 		public function updateJenisCuci(){
+ 			$post = $this->input->post();
+ 			$this->id_jenis_cuci = $post['id_jenis_cuci'];
+ 			$this->nama_jenis	 = $post["nama_jenis"];
+ 			$this->harga 		 = $post["harga"];
+ 			$this->lama_hari 	 = $post["lama_hari"];
+ 			$this->status 		 = $post["status"];
+ 			$this->id_user 		 = $post["id_user"];
+ 			$this->deskripsi 	 = $post['deskripsi'];
+
+ 			$this->db->update($this->tb_jenis,$this,array('id_jenis_cuci' => $post['id_jenis_cuci']));
+ 		}
  	}
 ?>

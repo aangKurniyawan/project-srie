@@ -73,6 +73,16 @@
           <?php echo $this->session->flashdata('delete'); ?>
         </div>
         <?php endif; ?>
+         <?php if ($this->session->flashdata('berhasilCuci')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('berhasilCuci'); ?>
+        </div>
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('gagalCuci')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('gagalCuci'); ?>
+        </div>
+        <?php endif; ?>
        <div class="row">
         <div class="col-md-12">
           <div class="box">
@@ -89,8 +99,8 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="chart">
-                   <form action="<?php echo base_url('addJenisCuci');?>" method="post" role="form">
-                    <div class="box-body">
+                    <form action="<?php echo base_url('addJenisCuci');?>" method="post" role="form">
+                      <div class="box-body">
                       <div class="form-group">
                         <label for="exampleInputPassword1">Nama Jenis Cuci</label>
                         <input class="form-control" type="hidden" name="id_user" value="5" />
@@ -112,14 +122,14 @@
                         <label for="exampleInputPassword1">Lama Pengerjaan</label>
                         <select class="form-control <?php echo form_error('lama_hari') ? 'is-invalid':'' ?>" name="lama_hari">
                           <option>-Pilih Lama Waktu-</option>
-                          <option>4 Jam</option>
-                          <option>1 Hari</option>
-                          <option>2 Hari</option>
-                          <option>3 Hari</option>
-                          <option>4 Hari</option>
-                          <option>5 Hari</option>
-                          <option>6 Hari</option>
-                          <option>7 Hari</option>
+                          <option value="4 JAM">4 Jam</option>
+                          <option value="1 Hari">1 Hari</option>
+                          <option value="2 Hari">2 Hari</option>
+                          <option value="3 Hari">3 Hari</option>
+                          <option value="4 Hari">4 Hari</option>
+                          <option value="5 Hari">5 Hari</option>
+                          <option value="6 Hari">6 Hari</option>
+                          <option value="7 Hari">7 Hari</option>
                         </select>
                          <div class="invalid-feedback">
                           <?php echo form_error('lama_hari') ?>
@@ -129,8 +139,8 @@
                         <label for="exampleInputPassword1">Status</label>
                         <select class="form-control <?php echo form_error('status') ? 'is-invalid':'' ?>" name="status">
                           <option>-Pilih Status-</option>
-                          <option>Aktif</option>
-                          <option>Tidak Aktif</option>
+                          <option value="Aktif">Aktif</option>
+                          <option value="Tidak Aktif">Tidak Aktif</option>
                         </select>
                         <div class="invalid-feedback">
                           <?php echo form_error('status') ?>
@@ -148,7 +158,8 @@
                         <input type="submit" class="btn bg-maroon btn-flat margin" value="Simpan Data">
                         <input type="reset" class="btn bg-purple btn-flat margin" value="Batal">
                       </div>
-                    </div>
+                      </div>
+                    </form>
                   </div>
                   <!-- /.chart-responsive -->
                 </div>
@@ -163,7 +174,6 @@
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                          <th>No</th>
                           <th>Layanan</th>
                           <th>Harga</th>
                           <th>Pengerjaan</th>
@@ -177,12 +187,16 @@
                            $no = 1;
                         ?>
                         <tr>
-                          <td><?php echo $no++ ;?></td>
                           <td><?php echo $data['nama_jenis'];?></td>
                           <td><?php echo $data['harga'];?></td>
                           <td><?php echo $data['lama_hari'];?></td>
                           <td><?php echo $data['status'];?></td>
-                          <td>C</td>
+                          <td>
+                            <a
+                              class="btn bg-purple" data-toggle="modal" data-target="#modal-default<?php echo $data['id_jenis_cuci'];?>">
+                              <i class="fa  fa-eye"></i> Detail
+                            </a>
+                          </td>
                         </tr>
                        <?php endforeach;?>
                         </tfoot>
@@ -203,6 +217,87 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+      <?php foreach($jenis as $data): ?>
+       <div class="modal fade" id="modal-default<?php echo $data['id_jenis_cuci'];?>">
+
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Detail Jenis Cuci</h4>
+              </div>
+              <div class="modal-body">
+                   <form action="<?php echo base_url('editJenis');?>" method="post" role="form">
+                      <div class="box-body">
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Nama Jenis Cuci</label>
+                        <input class="form-control" type="hidden" name="id_jenis_cuci" value="<?php echo $data['id_jenis_cuci'];?>" />
+                        <input class="form-control" type="hidden" name="id_user" value="5" />
+                        <input class="form-control <?php echo form_error('nama_jenis') ? 'is-invalid':'' ?>"
+                          type="text" name="nama_jenis" placeholder="Nama Jenis Cuci" value="<?php echo $data['nama_jenis'];?>"/>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('nama_jenis') ?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Harga</label>
+                        <input class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>"
+                          type="text" name="harga" placeholder="Harga" value="<?php echo $data['harga'];?>" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('harga') ?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Lama Pengerjaan</label>
+                        <select class="form-control <?php echo form_error('lama_hari') ? 'is-invalid':'' ?>" name="lama_hari">
+                          <option value="<?php echo $data['nama_jenis'];?>"><?php echo $data['lama_hari'];?></option>
+                          <option>-Pilih Lama Waktu-</option>
+                          <option value="4 JAM">4 Jam</option>
+                          <option value="1 Hari">1 Hari</option>
+                          <option value="2 Hari">2 Hari</option>
+                          <option value="3 Hari">3 Hari</option>
+                          <option value="4 Hari">4 Hari</option>
+                          <option value="5 Hari">5 Hari</option>
+                          <option value="6 Hari">6 Hari</option>
+                          <option value="7 Hari">7 Hari</option>
+                        </select>
+                         <div class="invalid-feedback">
+                          <?php echo form_error('lama_hari') ?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Status</label>
+                        <select class="form-control <?php echo form_error('status') ? 'is-invalid':'' ?>" name="status">
+                          <option value="<?php echo $data['status'];?>"><?php echo $data['status'];?></option>
+                          <option>-Pilih Status-</option>
+                          <option value="Aktif">Aktif</option>
+                          <option value="Tidak Aktif">Tidak Aktif</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('status') ?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Deskripsi Jenis Cuci</label>
+                        <textarea class="form-control <?php echo form_error('deskripsi') ? 'is-invalid':'' ?>" name="deskripsi">
+                          <?php echo $data['nama_jenis'];?>
+                        </textarea>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('deskripsi') ?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" class="btn bg-maroon btn-flat margin" value="Simpan Data">
+                        <!-- <input type="reset" class="btn bg-purple btn-flat margin" value="Batal"> -->
+                      </div>
+                      </div>
+                   </form>
+                  </div>
+            </div>
+          </div>
+        </div>
+      <?php endforeach;?>
 
   <?php $this->load->view('menu/footer');?>
   <div class="control-sidebar-bg"></div>
