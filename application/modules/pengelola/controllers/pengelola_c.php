@@ -6,6 +6,7 @@
 			parent:: __construct();
 			$this->load->model('pengelola/Pengelola_m');
 			$this->load->model('pengelola/Jenis_cuci_m');
+			$this->load->model('pengelola/Profile_laundry_m');
 			$this->load->library('form_validation');
 		}
 		public function index(){
@@ -27,7 +28,8 @@
 		}
 
 		public function menu_profile_outlet(){
-			$this->load->view('Pengelola/menu/profile_outlet');
+			$data['laundry'] = $this->Profile_laundry_m->getAllProfileLaundry();
+			$this->load->view('Pengelola/menu/profile_outlet',$data);
 		}
 
 		public function menu_profile_pengelola(){
@@ -145,6 +147,43 @@
 
 			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
 			$this->load->view('Pengelola/menu/menu_jenis_cuci',$data);
+		}
+
+		public function tambahProfilelaundry(){
+
+			$laundry = $this->Profile_laundry_m;
+			$validation = $this->form_validation;
+			$validation->set_rules($laundry->rules());
+
+			if($validation->run()){
+				$laundry->saveProfileLaundry();
+				$this->session->set_flashdata('successLaundry','Berhasil disimpan');
+			}else{
+				$this->session->set_flashdata('gagalLaundry','gagal disimpan');
+			}
+
+			$data['laundry'] = $this->Profile_laundry_m->getAllProfileLaundry();
+			$this->load->view('Pengelola/menu/profile_outlet',$data);
+		}
+
+		public function editProfileLaundry(){
+			$id_outlet = $this->input->post("id_outlet");
+			//print_r($id_outlet);die;
+			//if(!isset($id_outlet)) redirect('pengelola/Pengelola_c/menu_jenis_cuci');
+
+			$outlet = $this->Profile_laundry_m;
+			$validation = $this->form_validation;
+			$validation->set_rules($outlet->rules());
+
+			if($validation->run()){
+				$outlet->updateProfileOutlet();
+				$this->session->set_flashdata('editProfile','Berhasil disimpan');
+			}else{
+				$this->session->set_flashdata('gagaleditProfile','Gagagl disimpan');
+			}
+
+			$data['laundry'] = $this->Profile_laundry_m->getAllProfileLaundry();
+			$this->load->view('Pengelola/menu/profile_outlet',$data);
 		}
 	}
 ?>

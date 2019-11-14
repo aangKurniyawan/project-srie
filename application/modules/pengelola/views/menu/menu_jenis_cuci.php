@@ -281,7 +281,7 @@
                       <div class="form-group">
                         <label for="exampleInputPassword1">Deskripsi Jenis Cuci</label>
                         <textarea class="form-control <?php echo form_error('deskripsi') ? 'is-invalid':'' ?>" name="deskripsi">
-                          <?php echo $data['nama_jenis'];?>
+                          <?php echo $data['deskripsi'];?>
                         </textarea>
                         <div class="invalid-feedback">
                           <?php echo form_error('deskripsi') ?>

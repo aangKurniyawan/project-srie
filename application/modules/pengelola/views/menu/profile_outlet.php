@@ -50,94 +50,369 @@
 
     <!-- Main content -->
     <section class="content">
-
-      <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>assets_pengelola/dist/img/user4-128x128.jpg" alt="User profile picture">
-
-              <h3 class="profile-username text-center">Sri Iftahur Rizkiyah</h3>
-
-              <p class="text-muted text-center">Operator Laundry</p>
-
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Email</b> <a class="pull-right">operator@email.com</a>
-                </li>
-                <li class="list-group-item">
-                  <b>No Telepon</b> <a class="pull-right">089531529435</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Alamat</b> <a class="pull-right">cilangkap perdayu</a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+        <?php if ($this->session->flashdata('successLaundry')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('successLaundry'); ?>
         </div>
-        <!-- /.col -->
-        <div class="col-md-9">
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('gagalLaundry')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('gagalLaundry'); ?>
+        </div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('editProfile')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('editProfile'); ?>
+        </div>
+        <?php endif; ?>
+         <?php if ($this->session->flashdata('gagaleditProfile')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('gagaleditProfile'); ?>
+        </div>
+        <?php endif; ?>
+
+        <?php foreach($laundry as $data ):?>
+         <div class="row">
+         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Edit Profile</a></li>
+              <li class="active"><a href="#activity" data-toggle="tab">Profil Laundry</a></li>
+              <li><a href="#settings" data-toggle="tab">Ubah Data</a></li>
+              <li><a href="#tambah" data-toggle="tab">Tambah Data</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Nama Lengkap</label>
+                <!-- Post -->
+                <div class="post">
+                  <div class="user-block">
+                   <!--  <img class="img-circle img-bordered-sm" src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $data['foto1'];?>" alt="user image"> -->
+                        <span class="username">
+                          <a href="#">Nama Laundry</a>
+                        </span>
+                    <span class="description">
+                      <?php echo $data['nama_outlet'];?>
+                    </span>
+                  </div>
+                  <div class="user-block">
+                      <span class="username">
+                        <a href="#">Moto Loundry</a>
+                      </span>
+                    <span class="description">
+                      <?php echo $data['moto_outlet'];?>
+                    </span>                  
+                  </div>
+                  <div class="user-block">
+                      <span class="username">
+                        <a href="#">No Telepon</a>
+                      </span>
+                    <span class="description">
+                     <?php echo $data['no_telepon'];?>
+                    </span>
+                  </div>
+                  <div class="user-block">
+                      <span class="username">
+                        <a href="#">Email</a>
+                      </span>
+                    <span class="description">
+                     <?php echo $data['email'];?>
+                    </span>
+                  </div>
+                  <div class="user-block">
+                      <span class="username">
+                        <a href="#">Alamat</a>
+                      </span>
+                    <span class="description">
+                     <?php echo $data['alamat'];?>
+                    </span>
+                  </div>
+                </div>
 
+               <!--  <div class="post">
+                  <div class="user-block">
+                      <span class="username">
+                        <a href="#">Galery Laundry</a>
+                        <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                      </span>
+                  </div>
+                  <div class="row margin-bottom">
+                    <div class="col-sm-6">
+                      <img class="img-responsive" src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $data['foto1'];?>" alt="Photo">
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $data['foto2'];?>" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $data['foto3'];?>" alt="Photo">
+                        </div>
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $data['foto4'];?>" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $data['foto5'];?>" alt="Photo">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+             
+              <div class="tab-pane" id="settings">
+               <form action="<?php echo base_url('editProfileLaundry');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="hidden">
+                      <label for="inputName" class="col-sm-2 control-label">id otlet</label>
+                      <div class="col-sm-10">
+                        <input class="form-control <?php echo form_error('id_outlet') ? 'is-invalid':'' ?>"
+                        type="text" name="id_outlet" placeholder="Nama Laundry" value="<?php echo $data['id_outlet'];?>" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('id_outlet') ?>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">Nama Laundry</label>
+                      <div class="col-sm-10">
+                        <input class="form-control <?php echo form_error('nama_outlet') ? 'is-invalid':'' ?>"
+                        type="text" name="nama_outlet" placeholder="Nama Laundry" value="<?php echo $data['nama_outlet'];?>" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('nama_outlet') ?>
+                        </div>
+                        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail" class="col-sm-2 control-label">Moto Laundry</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control <?php echo form_error('moto_outlet') ? 'is-invalid':'' ?>"
+                         name="moto_outlet"><?php echo $data['moto_outlet'];?></textarea>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('moto_outlet') ?>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">No Telepon</label>
+                      <div class="col-sm-10">
+                       <input class="form-control <?php echo form_error('no_telepon') ? 'is-invalid':'' ?>"
+                        type="text" name="no_telepon" value="<?php echo $data['no_telepon'];?>" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('no_telepon') ?>
+                        </div>
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                       <input class="form-control <?php echo form_error('email') ? 'is-invalid':'' ?>"
+                        type="email" name="email" value="<?php echo $data['email'];?>"/>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('email') ?>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputExperience" class="col-sm-2 control-label">Alamat Lengkap</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>"
+                         name="alamat"><?php echo $data['alamat'];?></textarea>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('alamat') ?>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Foto 1</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Nama Lengkap">
+                      <input class="form-control <?php echo form_error('foto1') ? 'is-invalid':'' ?>"
+                      type="file" name="foto1"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto1') ?>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
+                    <label for="inputName" class="col-sm-2 control-label">Foto 2</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input class="form-control <?php echo form_error('foto2') ? 'is-invalid':'' ?>"
+                      type="file" name="foto2"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto2') ?>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">No Telepon</label>
+                    <label for="inputName" class="col-sm-2 control-label">Foto 3</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="No Telepon">
+                      <input class="form-control <?php echo form_error('foto3') ? 'is-invalid':'' ?>"
+                      type="file" name="foto3"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto3') ?>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Password</label>
+                    <label for="inputName" class="col-sm-2 control-label">Foto 4</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
+                      <input class="form-control <?php echo form_error('foto4') ? 'is-invalid':'' ?>"
+                      type="file" name="foto4"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto4') ?>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Alamat</label>
+                    <label for="inputName" class="col-sm-2 control-label">Foto 5</label>
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Alamat"></textarea>
+                      <input class="form-control <?php echo form_error('foto5') ? 'is-invalid':'' ?>"
+                      type="file" name="foto5"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto5') ?>
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Foto Profile</label>
+                  </div> -->
+                  <div class="hidden">
+                    <label for="inputName" class="col-sm-2 control-label">id user</label>
                     <div class="col-sm-10">
-                      <input type="file" class="form-control" id="inputSkills" placeholder="Skills">
+                      <input class="form-control <?php echo form_error('id_user') ? 'is-invalid':'' ?>"
+                      type="text" name="id_user" value="<?php echo $data['id_user'];?>" />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('id_user') ?>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Simpan Pembaharuan</button>
+                      <button type="submit" class="btn btn-danger">Simpan Data</button>
                     </div>
                   </div>
-                </form>
+              </form>
               </div>
+                 <div class="tab-pane" id="tambah">
+                  <form action="<?php echo base_url('addProfileLaundry');?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">Nama Laundry</label>
+                      <div class="col-sm-10">
+                        <input class="form-control <?php echo form_error('nama_outlet') ? 'is-invalid':'' ?>"
+                        type="text" name="nama_outlet" placeholder="Nama Laundry" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('nama_outlet') ?>
+                        </div>
+                        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>" style="display: none">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail" class="col-sm-2 control-label">Moto Laundry</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control <?php echo form_error('moto_outlet') ? 'is-invalid':'' ?>"
+                         name="moto_outlet" placeholder="Moto Laundry"></textarea>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('moto_outlet') ?>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">No Telepon</label>
+                      <div class="col-sm-10">
+                       <input class="form-control <?php echo form_error('no_telepon') ? 'is-invalid':'' ?>"
+                        type="text" name="no_telepon" placeholder="No Telepon" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('no_telepon') ?>
+                        </div>
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                       <input class="form-control <?php echo form_error('email') ? 'is-invalid':'' ?>"
+                        type="email" name="email" placeholder="Email" />
+                        <div class="invalid-feedback">
+                          <?php echo form_error('email') ?>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputExperience" class="col-sm-2 control-label">Alamat Lengkap</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>"
+                         name="alamat" placeholder="Alamat Lengkap"></textarea>
+                        <div class="invalid-feedback">
+                          <?php echo form_error('alamat') ?>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Foto 1</label>
+                    <div class="col-sm-10">
+                      <input class="form-control <?php echo form_error('foto1') ? 'is-invalid':'' ?>"
+                      type="file" name="foto1"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto1') ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Foto 2</label>
+                    <div class="col-sm-10">
+                      <input class="form-control <?php echo form_error('foto2') ? 'is-invalid':'' ?>"
+                      type="file" name="foto2"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto2') ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Foto 3</label>
+                    <div class="col-sm-10">
+                      <input class="form-control <?php echo form_error('foto3') ? 'is-invalid':'' ?>"
+                      type="file" name="foto3"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto3') ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Foto 4</label>
+                    <div class="col-sm-10">
+                      <input class="form-control <?php echo form_error('foto4') ? 'is-invalid':'' ?>"
+                      type="file" name="foto4"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto4') ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Foto 5</label>
+                    <div class="col-sm-10">
+                      <input class="form-control <?php echo form_error('foto5') ? 'is-invalid':'' ?>"
+                      type="file" name="foto5"  />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('foto5') ?>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="hidden">
+                    <label for="inputName" class="col-sm-2 control-label">id user</label>
+                    <div class="col-sm-10">
+                      <input class="form-control <?php echo form_error('id_user') ? 'is-invalid':'' ?>"
+                      type="text" name="id_user" value="5" />
+                      <div class="invalid-feedback">
+                        <?php echo form_error('id_user') ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Simpan Data</button>
+                    </div>
+                  </div>
+              </form>
+              </div>
+              <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
         </div>
+        <?php endforeach ;?>
         <!-- /.col -->
       </div>
       <!-- /.row -->
