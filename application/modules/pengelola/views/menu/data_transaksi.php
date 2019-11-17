@@ -166,8 +166,44 @@
                                   <input type="text" class="form-control" placeholder="Nama Pelanggan">
                                 </div>
                             </div>
+                              <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>Jas</label>
+                                  <input type="text" class="form-control" placeholder="Jumlah Jas">
+                              </div>
+                            </div>
+                          </div>
+                           <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>No Telepon</label>
+                                  <input type="text" class="form-control" placeholder="Nama Pelanggan">
+                                </div>
+                            </div>
                             <div class="col-sm-6" style="background-color:;">
                               <div class="form-group">
+                                  <label>Gorden</label>
+                                  <input type="text" class="form-control" placeholder="Jumlah Jas">
+                                </div>
+                            </div>
+                          </div>
+                           <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                               <div class="form-group">
+                                  <label>Alamat</label>
+                                  <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="background-color:;">
+                              <div class="form-group">
+                                  <label>Bad Cover/Sprei</label>
+                                 <input type="text" class="form-control" placeholder="Berat Cuci">
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
+                                <div class="form-group">
                                   <label>Jenis Laundry</label>
                                   <select class="form-control">
                                     <option>Dry Cleaning</option>
@@ -177,17 +213,9 @@
                                   </select>
                                 </div>
                             </div>
-                          </div>
-                          <div class="row">
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
-                                  <label>No Telepon</label>
-                                  <input type="text" class="form-control" placeholder="No Telepon">
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="background-color:;">
-                               <div class="form-group">
-                                  <label>Berat Cuci</label>
+                                  <label>Karpet</label>
                                   <input type="text" class="form-control" placeholder="Berat Cuci">
                                 </div>
                             </div>
@@ -195,55 +223,29 @@
                           <div class="row">
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
-                                  <label>Alamat</label>
-                                  <textarea class="form-control"></textarea>
+                                  <label>Berat Cuci</label>
+                                  <input type="text" class="form-control" placeholder="Berat Cuci">
                                 </div>
                             </div>
-                            <div class="col-sm-3" style="background-color:;">
+                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
-                                  <label>Jenis Cucian</label>
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox">
-                                      Celana Jeans
-                                    </label>
-                                  </div>
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox">
-                                      Kaos
-                                    </label>
-                                  </div>
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox">
-                                      Jas
-                                    </label>
-                                  </div>
+                                  <label>Boneka</label>
+                                  <input type="text" class="form-control" placeholder="No Telepon">
                                 </div>
                             </div>
-                            <div class="col-sm-3" style="background-color:;">
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
-                                  <label></label>
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox">
-                                      Sprei
-                                    </label>
-                                  </div>
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox">
-                                      Pakaian
-                                    </label>
-                                  </div>
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox">
-                                      Selimut
-                                    </label>
-                                  </div>
+                                  <label>Jumlah Cucian</label>
+                                  <input type="text" class="form-control" placeholder="Berat Cuci">
                                 </div>
+                            </div>
+                             <div class="col-sm-6" style="background-color:;">
+                              <!--  <div class="form-group">
+                                  <label>Boneka</label>
+                                  <input type="text" class="form-control" placeholder="No Telepon">
+                                </div> -->
                             </div>
                           </div>
                           <div class="row">
@@ -304,6 +306,36 @@
                             <td>3.</td>
                             <td>Rosiana Dewi</td>
                             <td><span class="badge bg-blue">proses</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>4.</td>
+                            <td>Umi Maryam</td>
+                            <td><span class="badge bg-green">selesai</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>5.</td>
+                            <td>Nita Angraeni</td>
+                            <td><span class="badge bg-green">selesai</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                           <tr>
+                            <td>3.</td>
+                            <td>Rosiana Dewi</td>
+                            <td><span class="badge bg-blue">proses</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>4.</td>
+                            <td>Umi Maryam</td>
+                            <td><span class="badge bg-green">selesai</span></td>
+                            <td><button type="reset" class="bg-navy">Detail</button></td>
+                          </tr>
+                          <tr>
+                            <td>5.</td>
+                            <td>Nita Angraeni</td>
+                            <td><span class="badge bg-green">selesai</span></td>
                             <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
                           <tr>
