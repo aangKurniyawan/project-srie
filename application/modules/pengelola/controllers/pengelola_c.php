@@ -24,7 +24,8 @@
 		}
 
 		public function menu_transaksi(){
-			$this->load->view('Pengelola/menu/data_transaksi');
+			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
+			$this->load->view('Pengelola/menu/data_transaksi',$data);
 		}
 
 		public function menu_profile_outlet(){
@@ -184,6 +185,17 @@
 
 			$data['laundry'] = $this->Profile_laundry_m->getAllProfileLaundry();
 			$this->load->view('Pengelola/menu/profile_outlet',$data);
+		}
+
+		public function tambah_transaksi(){
+			$id_user 		= $this->input->post('id_user');
+			$id_jenis_cuci 	= $this->input->post('id_jenis_cuci');
+			$nama_member 	= $this->input->post('nama_member');
+			$no_telepon		= $this->input->post('no_telepon');
+			$alamat 		= $this->input->post('alamat');
+			$berat_cuci 	= $this->input->post('berat_cuci');
+			$id_operator 	= $this->input->post('id_operator');
+			print_r($alamat);die;
 		}
 	}
 ?>

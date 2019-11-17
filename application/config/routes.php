@@ -36,4 +36,5 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['editJenis'] 			= "pengelola/pengelola_c/editJenisCuci/";
 	$route['addProfileLaundry'] 	= "pengelola/pengelola_c/tambahProfilelaundry";
 	$route['editProfileLaundry']	= "pengelola/pengelola_c/editProfileLaundry";
+	$route['transaksi']				= "pengelola/pengelola_c/tambah_transaksi";
 /* ROUTE PENGELOLA */

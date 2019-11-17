@@ -140,50 +140,60 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-8">
-                   <div class="box box-danger">
-                      <!-- <div class="box-header with-border">
-                        <h3 class="box-title">Form Tambah Transaksi</h3>
-                      </div> -->
-                      <div class="box-body">
-                        <div class="container-fluid">
-                          <div class="row">
-                            <div class="col-sm-6" style="background-color:;">
-                              <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="masukan kode member">
-                                    <span class="input-group-btn">
-                                      <button type="button" class="btn btn-info btn-flat">Cari</button>
-                                    </span>
-                              </div>
-                            </div>
-                            <!-- <div class="col-sm-3" style="background-color:pink;">
-                              <p>Sed ut perspiciatis...</p>
-                            </div> -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Cuci Kiloan</a></li>
+              <li><a href="#timeline" data-toggle="tab">Cuci Satuan</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                <div class="box-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-sm-6" style="background-color:;">
+                        <div class="input-group input-group-sm">
+                          <input type="text" class="form-control" placeholder="masukan kode member">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-flat">Cari</button>
+                            </span>
                           </div>
-                          <div class="row">
-                            <div class="col-sm-6" style="background-color:;">
-                               <div class="form-group">
-                                  <label>Nama Member</label>
-                                  <input type="text" class="form-control" placeholder="Nama Pelanggan">
-                                </div>
+                        </div>
+                      </div>
+                      <form action="<?php echo base_url('transaksi');?>" method="post">
+                        <div class="row">
+                          <div class="col-sm-6" style="background-color:;">
+                            <div class="form-group">
+                              <label>Nama Member</label>
+                                <input type="hidden" name="id_user" class="form-control" value="5">
+                                <input type="text" name="nama_member" class="form-control" placeholder="Nama Pelanggan">
+                              </div>
                             </div>
                               <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
-                                  <label>Jas</label>
-                                  <input type="text" class="form-control" placeholder="Jumlah Jas">
-                              </div>
+                                  <label>Jenis Laundry</label>
+                                  <select name="id_jenis_cuci"class="form-control" >
+                                    <option>-Pilih Paket Laundry</option>
+                                    <?php foreach($jenis as $row): ?>
+                                    <option value="<?php echo $row['id_jenis_cuci'];?>">
+                                      <?php echo $row['nama_jenis'];?> 
+                                    </option>
+                                   <?php endforeach ;?>
+                                  </select>
+                                </div>
                             </div>
                           </div>
                            <div class="row">
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>No Telepon</label>
-                                  <input type="text" class="form-control" placeholder="Nama Pelanggan">
+                                  <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon">
                                 </div>
                             </div>
                             <div class="col-sm-6" style="background-color:;">
-                              <div class="form-group">
-                                  <label>Gorden</label>
-                                  <input type="text" class="form-control" placeholder="Jumlah Jas">
+                               <div class="form-group">
+                                  <label>Berat Cuci</label>
+                                  <input type="text" name="berat_cuci" class="form-control" placeholder="Berat Cuci">
                                 </div>
                             </div>
                           </div>
@@ -191,67 +201,21 @@
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>Alamat</label>
-                                  <textarea class="form-control"></textarea>
+                                  <textarea name="alamat" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6" style="background-color:;">
                               <div class="form-group">
-                                  <label>Bad Cover/Sprei</label>
-                                 <input type="text" class="form-control" placeholder="Berat Cuci">
-                                </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-6" style="background-color:;">
-                                <div class="form-group">
-                                  <label>Jenis Laundry</label>
-                                  <select class="form-control">
-                                    <option>Dry Cleaning</option>
-                                    <option>Pressing</option>
-                                    <option>Laundry</option>
-                                    <option>Pickup & Delivery</option>
-                                  </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="background-color:;">
-                               <div class="form-group">
-                                  <label>Karpet</label>
-                                  <input type="text" class="form-control" placeholder="Berat Cuci">
-                                </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-6" style="background-color:;">
-                               <div class="form-group">
-                                  <label>Berat Cuci</label>
-                                  <input type="text" class="form-control" placeholder="Berat Cuci">
-                                </div>
-                            </div>
-                             <div class="col-sm-6" style="background-color:;">
-                               <div class="form-group">
-                                  <label>Boneka</label>
-                                  <input type="text" class="form-control" placeholder="No Telepon">
-                                </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-6" style="background-color:;">
-                               <div class="form-group">
                                   <label>Jumlah Cucian</label>
-                                  <input type="text" class="form-control" placeholder="Berat Cuci">
+                                  <input type="hidden" name="id_operator" class="form-control" value="5">
+                                  <input type="text" name="jumlah_cucian" class="form-control" placeholder="Jumlah Cucian">
                                 </div>
-                            </div>
-                             <div class="col-sm-6" style="background-color:;">
-                              <!--  <div class="form-group">
-                                  <label>Boneka</label>
-                                  <input type="text" class="form-control" placeholder="No Telepon">
-                                </div> -->
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
-                                  <button type="button" class="form-control bg-maroon">Simpan Data</button>
+                                  <button type="submit" class="form-control bg-maroon">Simpan Data</button>
                                </div>
                             </div>
                             <div class="col-sm-6" style="background-color:;">
@@ -262,9 +226,109 @@
                           </div>
                         </div>
                       </div>
-                      <!-- /.box-body -->
+                    </form>
+                <!-- /.post -->
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="timeline">
+                <!-- The timeline -->
+                <ul class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                        <span class="bg-red">
+                          10 Feb. 2014
+                        </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-envelope bg-blue"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                      <div class="timeline-body">
+                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                        quora plaxo ideeli hulu weebly balihoo...
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
                     </div>
-                </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-user bg-aqua"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-comments bg-yellow"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                      <div class="timeline-body">
+                        Take me to your leader!
+                        Switzerland is small and neutral!
+                        We are more like Germany, ambitious and misunderstood!
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                        <span class="bg-green">
+                          3 Jan. 2014
+                        </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-camera bg-purple"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                      <div class="timeline-body">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
                 <!-- /.col -->
                 <div class="col-md-4">
                    <div class="box">
@@ -320,37 +384,6 @@
                             <td><span class="badge bg-green">selesai</span></td>
                             <td><button type="reset" class="bg-navy">Detail</button></td>
                           </tr>
-                           <tr>
-                            <td>3.</td>
-                            <td>Rosiana Dewi</td>
-                            <td><span class="badge bg-blue">proses</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <td>4.</td>
-                            <td>Umi Maryam</td>
-                            <td><span class="badge bg-green">selesai</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <td>5.</td>
-                            <td>Nita Angraeni</td>
-                            <td><span class="badge bg-green">selesai</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <td>4.</td>
-                            <td>Umi Maryam</td>
-                            <td><span class="badge bg-green">selesai</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <td>5.</td>
-                            <td>Nita Angraeni</td>
-                            <td><span class="badge bg-green">selesai</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-
                         </table>
                       </div>
                       <!-- /.box-body -->
