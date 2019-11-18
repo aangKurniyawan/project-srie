@@ -149,5 +149,30 @@
 				return array_map('unlink',glob(FCPATH."assets_pengelola/image/user_image/$filename.*"));
 			}
 		}
+
+		public function GetRowMember($keyword){
+			$this->db->like('no_telepon',$keyword,'both');
+			$this->db->order_by('no_telepon','ASC');
+			$this->db->limit(10);
+			return $this->db->get('tb_user')->result();
+		}
+
+		public function dataMember($no_telepon){
+			$query = $this->db->query("SELECT * FROM tb_user WHERE no_telepon = '$no_telepon'");
+			//print_r($no_telepon);die;
+			if($query->num_rows() > 0){
+				foreach($query->result() as $data){
+					$hasil= array(
+						'id_user' 		=> $data->id_user,
+						'nama_user' 	=> $data->nama_user,
+						'no_telepon' 	=> $data->no_telepon,
+						'alamat' 		=> $data->alamat,
+					);
+					return $hasil;
+				}
+
+			}
+			
+		}
  	}
 ?>

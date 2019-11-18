@@ -75,5 +75,11 @@
 
  			$this->db->update($this->tb_jenis,$this,array('id_jenis_cuci' => $post['id_jenis_cuci']));
  		}
+
+ 		public function cek_harga($id_jenis_cuci){
+ 			$query = $this->db->query("SELECT * FROM tb_jenis_cuci 
+ 				WHERE id_jenis_cuci='$id_jenis_cuci'")->result_array();
+ 			return $query;
+ 		}
  	}
 ?>

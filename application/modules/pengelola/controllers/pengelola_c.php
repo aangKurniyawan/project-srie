@@ -188,6 +188,8 @@
 		}
 
 		public function tambah_transaksi(){
+			$now = date('Y-m-d H:i:s');
+
 			$id_user 		= $this->input->post('id_user');
 			$id_jenis_cuci 	= $this->input->post('id_jenis_cuci');
 			$nama_member 	= $this->input->post('nama_member');
@@ -195,7 +197,45 @@
 			$alamat 		= $this->input->post('alamat');
 			$berat_cuci 	= $this->input->post('berat_cuci');
 			$id_operator 	= $this->input->post('id_operator');
-			print_r($alamat);die;
+			$jumlah_cucian 	= $this->input->post('jumlah_cucian');
+
+			$harga = $this->Jenis_cuci_m->cek_harga($id_jenis_cuci);
+			$total_harga = $berat_cuci*$harga[0]['harga'];
+
+			$transaksi = array(
+				'id_user' 		=> 	$id_user,
+				'id_jenis_cuci' => $id_jenis_cuci,
+				'berat_cuci'	=> $berat_cuci ,
+				'jumlah_cucian' => $jumlah_cucian,
+				'total_harga' 	=> $total_harga,
+				'id_operator'	=> $id_operator,
+				'created'		=> $now,
+				'deleted'		=> 0
+					
+				);
+			$this->Pengelola_m->addTransaksi
+			print_r($transaksi);die;
+		}
+
+		public function getDataMember(){
+			if(isset($_GET['term'])){
+				$result = $this->Pengelola_m->GetRowMember($_GET['term']);
+				if(count($result) > 0){
+					foreach($result as $row)
+					$arr_result[] = $row->no_telepon;
+					echo json_encode($arr_result);
+				}
+			}
+		}
+
+		public function getDetailMember(){
+
+			$no_telepon = $_GET['no_telepon'];
+			//$no_telepon = $this->input->post('no_telepon');
+			//print_r($no_telepon);die;
+			$data = $this->Pengelola_m->dataMember($no_telepon);
+			echo json_encode($data);
+			//print_r($no_telepon);die;
 		}
 	}
 ?>

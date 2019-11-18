@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/css/jquery-ui.css">
+
   <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -152,13 +154,15 @@
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-sm-6" style="background-color:;">
-                        <div class="input-group input-group-sm">
-                          <input type="text" class="form-control" placeholder="masukan kode member">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat">Cari</button>
-                            </span>
+                        <form>
+                          <div >
+                            <input type="text" id="no_telepon" class="form-control" placeholder="masukan kode member">
+                              <!-- <span class="input-group-btn">
+                                  <button type="button" class="btn btn-info btn-flat">Cari</button>
+                              </span> -->
+                            </div>
                           </div>
-                        </div>
+                        </form>
                       </div>
                       <form action="<?php echo base_url('transaksi');?>" method="post">
                         <div class="row">
@@ -166,7 +170,7 @@
                             <div class="form-group">
                               <label>Nama Member</label>
                                 <input type="hidden" name="id_user" class="form-control" value="5">
-                                <input type="text" name="nama_member" class="form-control" placeholder="Nama Pelanggan">
+                                <input type="text"  name="nama_user" id="nama_user"class="form-control" placeholder="Nama Pelanggan">
                               </div>
                             </div>
                               <div class="col-sm-6" style="background-color:;">
@@ -187,7 +191,7 @@
                             <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>No Telepon</label>
-                                  <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon">
+                                  <input type="text" name="no_telepon" id="no_telepon" class="form-control" placeholder="No Telepon">
                                 </div>
                             </div>
                             <div class="col-sm-6" style="background-color:;">
@@ -440,5 +444,37 @@
 <script src="<?php echo base_url();?>assets_pengelola/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets_pengelola/dist/js/demo.js"></script>
+
+<script src="<?php echo base_url();?>assets_pengelola/js/jquery-ui.js" type="text/javascript"></script>
+ <!--<script type="text/javascript">
+  $(document).ready(function(){
+    $("#no_telepon").autocomplete({
+      source : "<?php echo site_url('pengelola/Pengelola_c/getDataMember/?');?>"
+    });
+  });
+</script>-->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#no_telepon').on('input',function(){
+      var no_telepon = $(this).val();
+      $.ajax({
+        type : "POST",
+        url : "<?php echo base_url('pengelola/Pengelola_c/getDetailMember?no_telepon=');?>"+no_telepon,
+        dataType : "JSON",
+        data :{no_telepon:no_telepon},
+        cache:false,
+        success:function(data){
+          $.each(data,function(id_user,no_telepon, nama_user){
+              $('[name="id_user"]').val(data.id_user);
+              $('[name="nama_user"]').val(data.nama_user);
+              $('[name="no_telepon"]').val(data.no_telepon);
+              $('[name="alamat"]').val(data.alamat);
+          });
+        }
+      });
+      return false;
+    });
+  });
+</script>
 </body>
 </html>
