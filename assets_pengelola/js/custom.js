@@ -24,7 +24,7 @@ $(document).ready(function(){
 					}
 				});
 			});
-			$('ul.txtmember').on('click','li a', function(){
-				$('#no_telepon').val($(this).text());
-			})
-		})
+		$('ul.txtmember').on('click','li a', function(){
+		$('#no_telepon').val($(this).text());
+	});
+});

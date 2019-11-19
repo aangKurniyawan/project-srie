@@ -208,13 +208,23 @@
 				'berat_cuci'	=> $berat_cuci ,
 				'jumlah_cucian' => $jumlah_cucian,
 				'total_harga' 	=> $total_harga,
+				'status_bayar'	=> 'Belum Lunas',
+				'status_cucian' => 'Disimpan',
 				'id_operator'	=> $id_operator,
 				'created'		=> $now,
 				'deleted'		=> 0
 					
 				);
-			$this->Pengelola_m->addTransaksi
-			print_r($transaksi);die;
+			$cek = $this->Pengelola_m->cekTransaksi($id_user);
+			//print_r($cek);die;
+			if($cek <=1){
+				$insert = $this->Pengelola_m->addTransaksi($transaksi);
+			}
+			$data['sumBayar']  = $this->Pengelola_m->getSumBayar($id_user);
+			$data['userLimit'] = $this->Pengelola_m->userTransaksiLimit($id_user);
+			$data['transaksi'] = $this->Pengelola_m->detailTransaksi($id_user);
+			$this->load->view('menu/detail_transaksi',$data);
+			//print_r($transaksi);die;
 		}
 
 		public function getDataMember(){

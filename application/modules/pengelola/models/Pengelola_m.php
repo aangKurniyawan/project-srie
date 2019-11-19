@@ -174,5 +174,45 @@
 			}
 			
 		}
+
+		public function addTransaksi($transaksi){
+			$data = $this->db->insert('tb_transaksi',$transaksi);
+		}
+
+		public function detailTransaksi($id_user){
+			$query = $this->db->query("SELECT a.*,b.nama_user as nama_operator,b.no_telepon as no_operator,
+			b.email as email_operator,c.nama_user as nama_member,c.no_telepon as no_member,c.email as email_member,
+			c.alamat as alamat_member,d.nama_jenis,d.harga FROM tb_transaksi a 
+			left join tb_user b on a.id_operator = b.id_user
+			left join tb_user c on a.id_user = c.id_user
+			left join tb_jenis_cuci d on a.id_jenis_cuci = d.id_jenis_cuci
+			WHERE a.id_user='$id_user' AND status_cucian ='Disimpan' and status_bayar='Belum Lunas'  ORDER BY id_transaksi")->result_array();
+			return $query;
+		}
+
+		public function userTransaksiLimit($id_user){
+			$query = $this->db->query("SELECT a.*,b.nama_user as nama_operator,b.no_telepon as no_operator,
+			b.email as email_operator,c.nama_user as nama_member,c.no_telepon as no_member,c.email as email_member,
+			c.alamat as alamat_member,d.nama_jenis,d.harga FROM tb_transaksi a 
+			left join tb_user b on a.id_operator = b.id_user
+			left join tb_user c on a.id_user = c.id_user
+			left join tb_jenis_cuci d on a.id_jenis_cuci = d.id_jenis_cuci
+			WHERE a.id_user='$id_user' AND status_cucian ='Disimpan'
+			and status_bayar='Belum Lunas'  ORDER BY id_transaksi LIMIT 1")->result_array();
+			return $query;
+		}
+
+		public function getSumBayar($id_user){
+			$query = $this->db->query("select sum(total_harga) as total_biayar from tb_transaksi 
+				WHERE id_user='$id_user' AND status_cucian ='Disimpan' and status_bayar='Belum Lunas'")->result_array();
+			return $query;
+		}
+
+		public function cekTransaksi($id_user){
+			$query = $this->db->query("SELECT * FROM tb_transaksi 
+				WHERE id_user='$id_user' AND status_bayar !='Lunas' AND 
+				status_cucian !='Selesai'")->num_rows();
+			return $query;
+		}
  	}
 ?>
