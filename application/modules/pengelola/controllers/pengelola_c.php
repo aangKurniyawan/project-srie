@@ -4,13 +4,21 @@
 
 		public function __construct(){
 			parent:: __construct();
+			if($this->session->userdata('status') != "login"){
+				redirect(base_url("login"));
+			}
 			$this->load->model('pengelola/Pengelola_m');
 			$this->load->model('pengelola/Jenis_cuci_m');
 			$this->load->model('pengelola/Profile_laundry_m');
 			$this->load->library('form_validation');
 		}
 		public function index(){
-			$this->load->view('Pengelola/home_pengelola');
+			$data['bulananDisimpan'] 	= $this->Pengelola_m->getTransaksiBulananDisimpan();
+			$data['bulananProses'] 		= $this->Pengelola_m->getTransaksiBulananDiproses();
+			$data['bulananSelesai'] 	= $this->Pengelola_m->getTransaksiBulananSelesai();
+			$data['bulananBatal'] 		= $this->Pengelola_m->getTransaksiBulananBatal();
+			$data['transaksi'] 			= $this->Pengelola_m->getTransaksi();
+			$this->load->view('Pengelola/home_pengelola',$data);
 		}
 
 		public function menu_user(){
@@ -24,7 +32,12 @@
 		}
 
 		public function menu_transaksi(){
-			$data['jenis'] = $this->Jenis_cuci_m->getAllJenisCuci();
+			$data['disimpan'] 	= $this->Pengelola_m->jumlahTransaksiHariIni();
+			$data['proses'] 	= $this->Pengelola_m->jumlahTransaksiProses();
+			$data['selesai'] 	= $this->Pengelola_m->jumlahTransaksiSelesai();
+			$data['batal'] 		= $this->Pengelola_m->jumlahTransaksiBatal();
+			$data['jenis'] 		= $this->Jenis_cuci_m->getAllJenisCuci();
+			$data['transaksi'] 	= $this->Pengelola_m->getTransaksi();
 			$this->load->view('Pengelola/menu/data_transaksi',$data);
 		}
 
@@ -34,7 +47,11 @@
 		}
 
 		public function menu_profile_pengelola(){
-			$this->load->view('Pengelola/menu/profile_pengelola');
+			$id_member = $this->uri->segment(2);
+			//print_r($id_member);die;
+			$user = $this->Pengelola_m;
+			$data['user'] = $user->getByIdUser($id_member);
+			$this->load->view('Pengelola/menu/profile_user',$data);
 		}
 
 		public function tambahUser(){
@@ -61,10 +78,10 @@
 			$this->load->view('Pengelola/menu/menu_user',$data);
 		}
 
-		public function formEdit($id_user = null){
-			$id_user = $this->uri->segment(2);
+		public function formEdit($id_member = null){
+			$id_member = $this->uri->segment(2);
 			
-			if(!isset($id_user)) redirect('pengelola/Pengelola_c/menu_user');
+			if(!isset($id_member)) redirect('pengelola/Pengelola_c/menu_user');
 
 			$user = $this->Pengelola_m;
 			$validation = $this->form_validation;
@@ -75,7 +92,7 @@
 				$this->session->set_flashdata('update','Berhasil disimpan');
 			}
 
-			$data['user'] = $user->getByIdUser($id_user);
+			$data['user'] = $user->getByIdUser($id_member);
 			if(!$data["user"]) show_404();
 
 			$this->load->view("Pengelola/menu/profile_user",$data);
@@ -85,7 +102,7 @@
 			
 			$id_user = $this->uri->segment(2);
 			$id_user = $this->input->post('id_user');
-			//print_r($id_user);die;
+			//print_r($id_member);die;
 			if(!isset($id_user)) redirect('pengelola/Pengelola_c/menu_user');
 
 			$user = $this->Pengelola_m;
@@ -103,10 +120,10 @@
 			$this->load->view("Pengelola/menu/profile_user",$data);
 		}
 
-		public function hapusUser($id_user = null){
-			$id_user = $this->uri->segment(2);
-			if(!isset($id_user)) show_404();
-			if($this->Pengelola_m->deleteUser($id_user)){
+		public function hapusUser($id_member = null){
+			$id_member = $this->uri->segment(2);
+			if(!isset($id_member)) show_404();
+			if($this->Pengelola_m->deleteUser($id_member)){
 				$this->session->set_flashdata('delete','Berhasil dihapus');
 				redirect(site_url('pengelola/Pengelola_c/menu_user'));
 			}
@@ -190,41 +207,130 @@
 		public function tambah_transaksi(){
 			$now = date('Y-m-d H:i:s');
 
-			$id_user 		= $this->input->post('id_user');
-			$id_jenis_cuci 	= $this->input->post('id_jenis_cuci');
+			$id_member 		= $this->input->post('id_member');
+			$id_jenis		= $this->input->post('id_jenis');
 			$nama_member 	= $this->input->post('nama_member');
 			$no_telepon		= $this->input->post('no_telepon');
 			$alamat 		= $this->input->post('alamat');
 			$berat_cuci 	= $this->input->post('berat_cuci');
-			$id_operator 	= $this->input->post('id_operator');
 			$jumlah_cucian 	= $this->input->post('jumlah_cucian');
+			$id_operator	= $this->input->post('id_operator');
 
-			$harga = $this->Jenis_cuci_m->cek_harga($id_jenis_cuci);
+			
+			
+			$harga = $this->Jenis_cuci_m->cek_harga($id_jenis);
 			$total_harga = $berat_cuci*$harga[0]['harga'];
 
 			$transaksi = array(
-				'id_user' 		=> 	$id_user,
-				'id_jenis_cuci' => $id_jenis_cuci,
-				'berat_cuci'	=> $berat_cuci ,
+				'id_member' 	=> $id_member,
+				'id_jenis'		=> $id_jenis,
+				'berat_cuci'	=> $berat_cuci,
 				'jumlah_cucian' => $jumlah_cucian,
 				'total_harga' 	=> $total_harga,
 				'status_bayar'	=> 'Belum Lunas',
 				'status_cucian' => 'Disimpan',
-				'id_operator'	=> $id_operator,
 				'created'		=> $now,
+				'id_operator' 	=> $id_operator,
 				'deleted'		=> 0
 					
 				);
-			$cek = $this->Pengelola_m->cekTransaksi($id_user);
-			//print_r($cek);die;
-			if($cek <=1){
-				$insert = $this->Pengelola_m->addTransaksi($transaksi);
+
+			//print_r($transaksi);die;$cekDuplicat[0]['id_operator'],$cekDuplicat[0]['status_bayar'],$cekDuplicat[0]['jumlah_cucian'],$cekDuplicat[0]['id_member'],$cekDuplicat[0]['id_jenis'],$cekDuplicat[0]['berat_cuci']
+			$cekDuplicat = $this->Pengelola_m->cekLastData($id_member);
+			//print_r($cekDuplicat);die;
+			if($cekDuplicat[0]['id_member']     == $transaksi['id_member']     && 
+			   $cekDuplicat[0]['id_jenis']      == $transaksi['id_jenis']      && 
+			   $cekDuplicat[0]['berat_cuci']    == $transaksi['berat_cuci']    &&
+			   $cekDuplicat[0]['jumlah_cucian'] == $transaksi['jumlah_cucian'] &&
+			   $cekDuplicat[0]['id_operator']   == $transaksi['id_operator']){
+				echo " <script type=text/javascript>alert('Selesaikan Transaksi Terlebih Dahulu');</script>";
+			}else{
+
+			$insert = $this->Pengelola_m->addTransaksi($transaksi);
+			//$cek = $this->Pengelola_m->cekTransaksi($id_member);
+			//print_r($id_member);die;
 			}
-			$data['sumBayar']  = $this->Pengelola_m->getSumBayar($id_user);
-			$data['userLimit'] = $this->Pengelola_m->userTransaksiLimit($id_user);
-			$data['transaksi'] = $this->Pengelola_m->detailTransaksi($id_user);
+			
+			$data['transaksi'] = $this->Pengelola_m->detailTransaksiAfterAdd($cekDuplicat[0]['id_member']);
+			$data['sumBayar']  = $this->Pengelola_m->getSumBayar($cekDuplicat[0]['id_transaksi']);
+			$data['userLimit'] = $this->Pengelola_m->userTransaksiLimit($cekDuplicat[0]['id_transaksi']);
+			$data['status']	   = $this->Pengelola_m->userTransaksiLimit($cekDuplicat[0]['id_transaksi']);	
 			$this->load->view('menu/detail_transaksi',$data);
+			//$this->output->delete_cache();
 			//print_r($transaksi);die;
+		}
+
+		public function update_transaksi(){
+			$buttonBayar = null;
+			$buttonSelesai = null;
+			if(isset($_POST['bayar'])){
+				$buttonBayar = "bayar";
+				//print_r($butoonBayar);die;
+			}else if(isset($_POST['selesai'])){
+				$buttonSelesai = "selesai";
+			}else if(isset($_POST['batal'])){
+				$buttonBatal = "batal";
+			}
+				$id_transaksi 		= $this->input->post("id_transaksi");
+				$jumlah_pembayaran 	= $this->input->post("jumlah_pembayaran");
+				$sisa_bayar			= $this->input->post("sisa_bayar");
+				$status_bayar 		= $this->input->post("status_bayar");
+				$status_cucian 		= $this->input->post("status_cucian");
+
+
+			//print_r($jumlah_pembayaran);die;
+			
+			//print_r($status_cucian);die;
+			if($sisa_bayar == 0 || $sisa_bayar <=0){
+				$status_bayar = "Lunas";
+			}
+			//print_r($jumlah_pembayaran);die;
+			$updateStatus = array(
+					"id_transaksi" 		=> $id_transaksi,
+					"jumlah_pembayaran" => $jumlah_pembayaran,
+					"sisa_bayar" 		=> $sisa_bayar,
+					"status_bayar" 		=> $status_bayar,
+					"status_cucian" 	=> "Dalam Pengerjaan"
+				);
+			if($buttonBayar == "bayar" ){
+				if($jumlah_pembayaran == " "){
+					$this->session->set_flashdata('belumBayar','Silahkan Selesaikan Pembayaran');
+				}else if($status_cucian == "Transaksi Batal"){
+					$this->session->set_flashdata('bayar','Transaksi  Sudah Dibatalkan Silahkan Buat Transaksi Baru');
+				}else{
+					$update = $this->Pengelola_m->update_status_transaksi($updateStatus);
+				}
+				
+			}else if($buttonSelesai == "selesai"){
+				if($status_cucian == "Transaksi Batal" && $jumlah_pembayaran == " "){
+					$this->session->set_flashdata('selesai','Transaksi Sudah Dibatalkan Silahkan Buat Transaksi Baru');
+				}else if($jumlah_pembayaran == " "){
+					$this->session->set_flashdata('belumBayar','Silahkan Selesaikan Pembayaran Terlebih Dahulu');
+				}else{
+					$updateSelesai = array(
+					"id_transaksi" 		=> $id_transaksi,
+					"status_cucian" 	=> "Selesai Pengerjaan"
+				);
+				//print_r($updateSelesai);die;
+				$update = $this->Pengelola_m->update_statusSelesai($updateSelesai);
+				}
+				
+			}else if($buttonBatal == "batal"){
+				if($status_cucian == "Selesai Pengerjaan" && $status_bayar == "Lunas" && $status_cucian == "Dalam Pengerjaan"){
+					$this->session->set_flashdata('tidakUpdate','Transaksi Yang Sudah Lunas dan Selesai Tidak Bisa Dirubah');
+				}else{
+					$updateBatal = array(
+						"id_transaksi" 		=> $id_transaksi,
+						"status_cucian" 	=> "Transaksi Batal"
+					);
+					$update = $this->Pengelola_m->update_statusBatal($updateBatal);
+				}
+			}
+			$data['sumBayar']  = $this->Pengelola_m->getSumBayar($id_transaksi);
+			$data['userLimit'] = $this->Pengelola_m->userTransaksiLimit($id_transaksi);
+			$data['transaksi'] = $this->Pengelola_m->detailTransaksi($id_transaksi);
+			$data['status']	   = $this->Pengelola_m->userTransaksiLimit($id_transaksi);	
+			$this->load->view('menu/detail_transaksi',$data);
 		}
 
 		public function getDataMember(){
@@ -246,6 +352,21 @@
 			$data = $this->Pengelola_m->dataMember($no_telepon);
 			echo json_encode($data);
 			//print_r($no_telepon);die;
+		}
+
+		public function detail_transaksi($id_transaksi = null){
+			$id_transaksi = $this->uri->segment(2);
+			//print_r($id_transaksi);die;
+			$data['sumBayar']  = $this->Pengelola_m->getSumBayar($id_transaksi);
+			$data['userLimit'] = $this->Pengelola_m->userTransaksiLimit($id_transaksi);
+			$data['transaksi'] = $this->Pengelola_m->detailTransaksi($id_transaksi);
+			$data['status']	   = $this->Pengelola_m->userTransaksiLimit($id_transaksi);	
+			$this->load->view('menu/detail_transaksi',$data);
+		}
+		public function updateTransaksi(){
+			//$id_transaksi = $this->input->post("id_transaksi");
+			$jumlah_pembayaran = $this->input->post("jumlah_pembayaran");
+			//print_r($jumlah_pembayaran);die;
 		}
 	}
 ?>

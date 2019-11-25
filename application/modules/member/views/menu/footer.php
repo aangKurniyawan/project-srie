@@ -1,14 +1,13 @@
+<?php foreach($profile as $data): ?>
 <div class="footer w3layouts">
 		<div class="container">
 			<div class="footer-row w3layouts-agile">
 				<div class="col-md-3 footer-grids w3l-agileits">
-					<h6><a href="index.html"><span class="f-letter">D</span>eterge<span class="f-square"></span></a></h6>
+					<h6><a href="index.html"><span class="f-letter"><?php echo $data['nama_outlet']?></span><span class="f-square"></span></a></h6>
 				</div>
 				<div class="col-md-3 footer-grids w3l-agileits">
 					<h3>Alamat Kami</h3>
-					<p>Jl Raya Parungpanjang No.11,</p>
-					<p>Kecamatan Parungpanjang,</p>
-					<p>Bogor, Jawa Barat.</p>
+					<p><?php echo $data['alamat']?></p>
 				</div>
 				<div class="col-md-3 footer-grids w3l-agileits">
 					<h3>Ikuti Kami</h3>
@@ -27,8 +26,8 @@
 				</div>
 				<div class="col-md-3 footer-grids w3l-agileits">	
 					<h3>Kirim Pertanyaan Anda</h3>
-					<p>0895-3152-9435<p>
-					<p><a href="mailto:info@example.com">admin@laundry.com</a></p>
+					<p><?php echo $data['no_telepon']?><p>
+					<p><a href="mailto:info@example.com"><?php echo $data['email']?></a></p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -45,4 +44,5 @@
 				<p>&copy; 2019 UNPAM . Sri Iftahur Rizkiah | Design by <a href="#"> Developer Kampus </a></p>
 			</div>
 		</div>
+		<?php endforeach;?>
 <!-- //copy-right -->

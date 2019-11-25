@@ -18,7 +18,9 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/bower_components/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/css/jquery-ui.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <link rel="stylesheet" href="<?php echo base_url();?>assets_pengelola/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet"
@@ -52,18 +54,19 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
-
+            <?php foreach($disimpan as $jml) : ?>
             <div class="info-box-content">
-              <span class="info-box-text">Jumlah Transaksi</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Status Disimpan</span>
+              <span class="info-box-number"><?php echo $jml['jumlah_cucian'];?></span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 70%"></div>
               </div>
                   <span class="progress-description">
-                    Jumlah dalam 30 hari
+                    Transaksi Hari Ini
                   </span>
             </div>
+          <?php endforeach;?>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -72,18 +75,19 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box bg-green">
             <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
-
+            <?php foreach($proses as $jml) : ?>
             <div class="info-box-content">
-              <span class="info-box-text">Transaksi Selesai</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Status Proses</span>
+              <span class="info-box-number"><?php echo $jml['jumlah_cucian'];?></span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 70%"></div>
               </div>
                   <span class="progress-description">
-                    Jumlah dalam 30 hari
+                    Transaksi Hari Ini
                   </span>
             </div>
+          <?php endforeach;?>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -92,18 +96,19 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box bg-yellow">
             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
-
+            <?php foreach($selesai as $jml) : ?>
             <div class="info-box-content">
-              <span class="info-box-text">Transaksi Proses</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Status Selesai</span>
+              <span class="info-box-number"><?php echo $jml['jumlah_cucian'];?></span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 70%"></div>
               </div>
                   <span class="progress-description">
-                   Jumlah dalam 30 hari
+                   Transaksi Hari Ini
                   </span>
             </div>
+            <?php endforeach;?>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -112,18 +117,19 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box bg-red">
             <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-
+            <?php foreach($batal as $jml) : ?>
             <div class="info-box-content">
-              <span class="info-box-text">Transaksi Batal</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Status Batal</span>
+              <span class="info-box-number"><?php echo $jml['jumlah_cucian'];?></span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 70%"></div>
               </div>
                   <span class="progress-description">
-                    Jumlah dalam 30 hari
+                    Transaksi Hari Ini
                   </span>
             </div>
+            <?php endforeach;?>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -141,11 +147,11 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Cuci Kiloan</a></li>
-              <li><a href="#timeline" data-toggle="tab">Cuci Satuan</a></li>
+              <!-- <li><a href="#timeline" data-toggle="tab">Cuci Satuan</a></li> -->
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
@@ -169,14 +175,15 @@
                           <div class="col-sm-6" style="background-color:;">
                             <div class="form-group">
                               <label>Nama Member</label>
-                                <input type="hidden" name="id_user" class="form-control" value="5">
+                                <input type="hidden" name="id_operator" value="<?php echo $this->session->userdata("id_user"); ?>" class="form-control" >
+                                <input type="hidden" name="id_member" class="form-control" >
                                 <input type="text"  name="nama_user" id="nama_user"class="form-control" placeholder="Nama Pelanggan">
                               </div>
                             </div>
                               <div class="col-sm-6" style="background-color:;">
                                <div class="form-group">
                                   <label>Jenis Laundry</label>
-                                  <select name="id_jenis_cuci"class="form-control" >
+                                  <select name="id_jenis"class="form-control select2" style="width: 100%;">
                                     <option>-Pilih Paket Laundry</option>
                                     <?php foreach($jenis as $row): ?>
                                     <option value="<?php echo $row['id_jenis_cuci'];?>">
@@ -211,7 +218,6 @@
                             <div class="col-sm-6" style="background-color:;">
                               <div class="form-group">
                                   <label>Jumlah Cucian</label>
-                                  <input type="hidden" name="id_operator" class="form-control" value="5">
                                   <input type="text" name="jumlah_cucian" class="form-control" placeholder="Jumlah Cucian">
                                 </div>
                             </div>
@@ -234,17 +240,13 @@
                 <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                <!-- The timeline -->
+              <!-- <div class="tab-pane" id="timeline">
                 <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
                   <li class="time-label">
                         <span class="bg-red">
                           10 Feb. 2014
                         </span>
                   </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
                   <li>
                     <i class="fa fa-envelope bg-blue"></i>
 
@@ -265,8 +267,6 @@
                       </div>
                     </div>
                   </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
                   <li>
                     <i class="fa fa-user bg-aqua"></i>
 
@@ -277,8 +277,6 @@
                       </h3>
                     </div>
                   </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
                   <li>
                     <i class="fa fa-comments bg-yellow"></i>
 
@@ -297,15 +295,11 @@
                       </div>
                     </div>
                   </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
                   <li class="time-label">
                         <span class="bg-green">
                           3 Jan. 2014
                         </span>
                   </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
                   <li>
                     <i class="fa fa-camera bg-purple"></i>
 
@@ -322,83 +316,62 @@
                       </div>
                     </div>
                   </li>
-                  <!-- END timeline item -->
                   <li>
                     <i class="fa fa-clock-o bg-gray"></i>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
-            <!-- /.tab-content -->
           </div>
-          <!-- /.nav-tabs-custom -->
         </div>
                 <!-- /.col -->
-                <div class="col-md-4">
-                   <div class="box">
-                      <div class="box-header with-border">
-                        <center><h3 class="box-title">Transaksi Hari Ini</h3></center>
-                      </div>
-                      <!-- /.box-header -->
+                <div class="col-md-5">
+                  <div class="box box-info">
+                    <div class="box-header">
+                      <h3 class="box-title">Transaksi Hari Ini</h3>
+                    </div>
+            <!-- /.box-header -->
                       <div class="box-body">
-                        <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="masukan kode member">
-                                    <span class="input-group-btn">
-                                      <button type="button" class="btn btn-info btn-flat">Cari</button>
-                                    </span>
-                              </div>
-                        <table class="table table-bordered">
+                        <table id="example1" class="table table-bordered table-striped">
+                          <thead>
                           <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Nama Member</th>
+                            <th>No</th>
+                            <th>No Transaksi</th>
                             <th>Status</th>
-                            <th style="width: 40px">Detail</th>
+                            <th>Harga</th>
+                            <th>Detail</th>
                           </tr>
+                          </thead>
+                          <tbody>
+
+                          <?php 
+                            $no = 1;
+                            foreach($transaksi as $data) {
+                           ?>
                           <tr>
-                            <td>1.</td>
-                            <td>Mahmud</td>
-                            <td><span class="badge bg-red">batal</span></td>
-                              <td>
-                                <a href="<?php echo site_url('detailTransaksi/');?>">
-                                  <button type="reset" class="bg-navy">Detail</button>
-                                </a>
-                              </td>
+                            <td><?php echo $no++ ?></td>
+                            <td><?php echo $data['id_transaksi'];?></td>
+                            <td><?php echo $data['status_cucian'];?></td>
+                            <td>Rp. <?php echo number_format($data['total_harga']);?></td>
+                            <td>
+                              <a href="<?php echo base_url('detail/').$data['id_transaksi'];?>">
+                                <button>Detail</button>
+                              </a>
+                            </td>
                           </tr>
+                          <?php } ?>
+                          
+                          </tbody>
+                          <tfoot>
                           <tr>
-                            <td>2.</td>
-                            <td>Yayah</td>
-                            <td><span class="badge bg-blue">proses</span></td>
-                             <td><button type="reset" class="bg-navy">Detail</button></td>
+                            <th>No</th>
+                            <th>No Transaksi</th>
+                            <th>Status</th>
+                            <th>Harga</th>
+                            <th>Detail</th>
                           </tr>
-                          <tr>
-                            <td>3.</td>
-                            <td>Rosiana Dewi</td>
-                            <td><span class="badge bg-blue">proses</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <td>4.</td>
-                            <td>Umi Maryam</td>
-                            <td><span class="badge bg-green">selesai</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
-                          <tr>
-                            <td>5.</td>
-                            <td>Nita Angraeni</td>
-                            <td><span class="badge bg-green">selesai</span></td>
-                            <td><button type="reset" class="bg-navy">Detail</button></td>
-                          </tr>
+                          </tfoot>
                         </table>
-                      </div>
-                      <!-- /.box-body -->
-                      <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                          <li><a href="#">&laquo;</a></li>
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">&raquo;</a></li>
-                        </ul>
                       </div>
                     </div>
                 </div>
@@ -446,6 +419,89 @@
 <script src="<?php echo base_url();?>assets_pengelola/dist/js/demo.js"></script>
 
 <script src="<?php echo base_url();?>assets_pengelola/js/jquery-ui.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>assets_pengelola/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>assets_pengelola/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>assets_pengelola/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+  })
+</script>
  <!--<script type="text/javascript">
   $(document).ready(function(){
     $("#no_telepon").autocomplete({
@@ -465,7 +521,7 @@
         cache:false,
         success:function(data){
           $.each(data,function(id_user,no_telepon, nama_user){
-              $('[name="id_user"]').val(data.id_user);
+              $('[name="id_member"]').val(data.id_user);
               $('[name="nama_user"]').val(data.nama_user);
               $('[name="no_telepon"]').val(data.no_telepon);
               $('[name="alamat"]').val(data.alamat);

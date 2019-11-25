@@ -74,31 +74,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-3">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Detail Status Data</h3>
-
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Jumlah Transaksi
-                  <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Status Proses</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Status Selesai</a></li>
-                <li><a href="#"><i class="fa fa-filter"></i> Status Batal <span class="label label-warning pull-right">65</span></a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-12">
           
           <div class="box">
             <div class="box-header">
@@ -106,82 +82,50 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Kode Member</th>
-                  <th>Nama</th>
-                  <th>Jenis Laundry</th>
-                  <th>Harga</th>
-                  <th>Status</th>
+                  <th>No</th>
+                  <th>No Transaksi</th>
+                  <th>Nama Member</th>
+                  <th>Jenis Cuci</th>
+                  <th>Berat</th>
+                  <th>Total Harga</th>
+                  <th>Status Bayar</th>
                   <th>Detail</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php 
+                  $no = 1;
+                  foreach($transaksi as $data) {
+                ?>
                 <tr>
-                  <td>Presto</td>
-                  <td>Nintendo DS browser</td>
-                  <td>Nintendo DS</td>
-                  <td>8.5</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
+                  <td><?php echo $no++ ?></td>
+                  <td><?php echo $data['id_transaksi'];?> </td>
+                  <td><?php echo $data['nama_user'];?> </td>
+                  <td><?php echo $data['nama_jenis'];?></td>
+                  <td><?php echo $data['berat_cuci'];?></td>
+                  <td>Rp .<?php echo number_format($data['total_harga']);?>,-</td>
+                  <td><?php echo $data['status_bayar'];?></td>
+                  <td>
+                    <a href="<?php echo base_url('detailTransaksi/').$data['id_transaksi'];?>" class="btn btn-primary">
+                      Detail
+                    </a>
+                  </td>
                 </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 4.5</td>
-                  <td>Mac OS 8-9</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Links</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Lynx</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>IE Mobile</td>
-                  <td>Windows Mobile 6</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>PSP browser</td>
-                  <td>PSP</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
-                </tr>
-                <tr>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td><button type="button" class="bg-navy">Detail</button></td>
-                </tr>
+                <?php } ?>
+                
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Kode Member</th>
-                  <th>Nama</th>
-                  <th>Jenis Laundry</th>
-                  <th>Harga</th>
-                  <th>Status</th>
+                  <th>No</th>
+                  <th>No Transaksi</th>
+                  <th>Nama Member</th>
+                  <th>Jenis Cuci</th>
+                  <th>Berat</th>
+                  <th>Total Harga</th>
+                  <th>Status Bayar</th>
                   <th>Detail</th>
                 </tr>
                 </tfoot>

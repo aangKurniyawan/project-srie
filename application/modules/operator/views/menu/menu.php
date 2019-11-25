@@ -4,10 +4,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url();?>assets_operator/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url();?>assets_pengelola/image/user_image/<?php echo $this->session->userdata("foto"); ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $this->session->userdata("nama_user"); ?></p>
         </div>
       </div>
   
@@ -31,8 +31,8 @@
              <span>Profil Saya</span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
+        <li class="">
+          <a href="<?php echo base_url('logout');?>">
              <i class="fa fa-power-off"></i>
              <span>Logout</span>
           </a>

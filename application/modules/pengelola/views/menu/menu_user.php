@@ -172,7 +172,7 @@
       <!-- /.box -->
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Data Pengguna Aplikasi</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -190,8 +190,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($user as $users):
+                <?php
                   $no = 1;
+                 foreach($user as $users):
                 ?>
                 <tr>
                   <td><?php echo $no++?></td>

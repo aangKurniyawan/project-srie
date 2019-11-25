@@ -28,8 +28,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--/header-w3l-->
 		<div class="header-w3-agileits" id="home">
 	<div class="w3-header-bottom">
+		<?php foreach($profile as $data): ?>
 		<div class="container"> 
-				<h1><a href="index.html"><span class="letter">D</span>eterge<span class="square"></span></a></h1>	
+				<h1><a href="index.html"><span class="letter"><?php echo $data['nama_outlet']?></span><span class="square"></span></a></h1>	
 			<div class="header-w3-top">
 				<div class="agileinfo-phone">
 				<div class="phone-wthree-left">
@@ -37,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<i class="fa fa-volume-control-phone" aria-hidden="true"></i>
 					<p>Silahkan Hubungi Kami!</span></p>
 				</div>
-				 <h2> 0895-3152-9435</h2>
+				 <h2><?php echo $data['no_telepon']?></h2>
 				</div>
 			</div>
 			<div class="top-nav">
@@ -54,10 +55,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li class="first-list"><a class="active" href="<?php echo site_url('home/');?>">Beranda</a></li>
-							<li><a href="<?php echo site_url('service/');?>">Layanan Kami</a></li>
-							<li><a href="<?php echo site_url('daftarMember/');?>">Daftar Member</a></li>
-							<li><a href="#myModal2" data-toggle="modal">Login Member</a></li>
-							<li><a href="<?php echo site_url('kontak/');?>">Kontak</a></li>
+							<li><a href="<?php echo site_url('service/');?>">Layanan</a></li>
+							<li><a href="<?php echo site_url('daftarMember/');?>">Daftar</a></li>
+							<li><a href="#myModal2" data-toggle="modal">Login</a></li>
+						<!-- 	<li><a href="<?php echo site_url('kontak/');?>">Kontak</a></li> -->
+							<li><a href="<?php echo site_url('kontak/');?>">Transaksi</a></li>
 						</ul>	
 					<div class="clearfix"> </div>
 				</div>	
@@ -72,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h3>Percayakan Pakaian Kotor Anda Kepada Kami <span></span></h3>
 			<div class="clearfix"> </div>
 			<div class="bnr-agileits-w3layouts-btn">
-				<a href="#" class="button-w3layouts hvr-rectangle-out" data-toggle="modal" data-target="#myModal">Read more</a>
+				<!-- <a href="#" class="button-w3layouts hvr-rectangle-out" data-toggle="modal" data-target="#myModal">Read more</a> -->
 			</div>
 		</div>
 	<!--/banner-info-->
@@ -84,9 +86,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="services-w3-agileits w3agileits-ref">
 	<div class="col-md-6  services-info">
 		<h6>Lihat Status Transaksi Anda <span>Disini </span></h6>
-		<p class="para-w3-agile">Masukan Kode Member Anda(Email)</p>
-		<form action="#" method="post">		 
-			<input type="email" class="text" required="" />
+		<p class="para-w3-agile">Masukan Kode Transaksi</p>
+		<form action="<?php echo base_url('lihat');?>" method="post">		 
+			<input type="text" name="id_transaksi"class="text" required />
 			<input type="submit" value="Cari" />					 
 		</form>
 		<div class="clearfix"></div>
@@ -96,32 +98,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-md-4 service-grids-w3ls">
 			<i class="fa fa-shirtsinbulk i1" aria-hidden="true"></i>
 			<div class="serv-rt-w3-agile">
-				<h5>Dry Cleaning</h5>
-				<p>Nikmati layanan Dry Cleaning Untuk Transaksi Anda </p>
+				<h5>Dry Cleaning</h5><!-- 
+				<p>Nikmati layanan Dry Cleaning Untuk Transaksi Anda </p> -->
 			</div>
 			<div class="clearfix"></div>
 		</div>
 			<div class="col-md-4 service-grids-w3ls">
 				<i class="fa fa-shopping-basket i2" aria-hidden="true"></i>
 				<div class="serv-rt-w3-agile">
-					<h5>Pressing</h5>
-					<p>Lorem ipsum dolor sit amet </p>
+					<h5>Pressing</h5><!-- 
+					<p>Lorem ipsum dolor sit amet </p> -->
 				</div>
 				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-4 service-grids-w3ls">
 				<i class="fa fa-magic i3" aria-hidden="true"></i>
 				<div class="serv-rt-w3-agile">
-					<h5>Laundry</h5>
-					<p>Lorem ipsum dolor sit amet </p>
+					<h5>Laundry</h5><!-- 
+					<p>Lorem ipsum dolor sit amet </p> -->
 				</div>
 				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-4 service-grids-w3ls">
 				<i class="fa fa-paper-plane-o i4" aria-hidden="true"></i>
 				<div class="serv-rt-w3-agile">
-					<h5>Pickup & Delivery</h5>
-					<p>Lorem ipsum dolor sit amet </p>
+					<h5>Pickup & Delivery</h5><!-- 
+					<p>Lorem ipsum dolor sit amet </p> -->
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -212,7 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--footer -->
 	<?php $this->load->view('menu/footer'); ?>
 <!--//footer-->	
-
+<?php endforeach;?>
 <!-- modal -->
 	<div class="modal about-modal w3-agileits fade" id="myModal2" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
@@ -221,32 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
 				</div> 
 				<div class="modal-body login-page "><!-- login-page -->     
-					<div class="login-top sign-top">
-						<div class="agileits-login">
-							<h5>Login</h5>
-							<form action="#" method="post">
-								<input type="email" class="email" name="Email" placeholder="Email" required=""/>
-								<input type="password" class="password" name="Password" placeholder="Password" required=""/>
-								<div class="wthree-text"> 
-									<ul> 
-										<li>
-											<label class="anim">
-											<input type="checkbox" class="checkbox">
-											<span> Remember me ?</span> 
-											</label> 
-										</li>
-										<li> 
-											<a href="#">Forgot password?</a> 
-										</li>
-									</ul>
-								<div class="clearfix"> </div>
-								</div>  
-								<div class="w3ls-submit"> 
-									<input type="submit" value="LOGIN">  	
-								</div>	
-							</form>
-						</div>  
-					</div>
+					<?php $this->load->view("login/form_login");?>
 				</div>  
 			</div> <!-- //login-page -->
 		</div>
@@ -260,29 +237,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
 				</div> 
 				<div class="modal-body login-page "><!-- login-page -->     
-					<div class="login-top sign-top">
-						<div class="agileits-login">
-							<h5>Register</h5>
-							<form action="#" method="post">
-								<input type="text" name="Username" placeholder="Username" required=""/>
-								<input type="email"  name="Email" placeholder="Email" required=""/>
-								<input type="password" name="Password" placeholder="Password" required=""/>
-							<div class="wthree-text"> 
-								<ul> 
-									<li>
-										<label class="anim">
-										<input type="checkbox" class="checkbox">
-										<span> I accept the terms of use</span> 
-										</label> 
-									</li>
-								</ul>
-							<div class="clearfix"> </div>
-							</div>  
-							<div class="w3ls-submit"> 
-								<input type="submit" value="Register">  	
-							</div>	
-						</form>
-					</div>  
+					<?php $this->load->view("login/form_login");?>
 				</div>
 			</div>  
 		</div> <!-- //login-page -->

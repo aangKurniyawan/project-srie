@@ -53,12 +53,13 @@
   <!-- Left side column. contains the logo and sidebar -->
   <?php $this->load->view('menu/menu') ?>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+   <div class="content-wrapper">
+    
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Invoice
-        <small>#007612</small>
+      <!--   <small><?php  echo $data['id_transaksi'];?> </small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -69,93 +70,96 @@
 
     <!-- Main content -->
     <section class="invoice">
+       <?php if ($this->session->flashdata('tidakUpdate')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('tidakUpdate'); ?>
+        </div>
+      <?php endif ?>
+       <?php if ($this->session->flashdata('bayar')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('bayar'); ?>
+        </div>
+      <?php endif ?>
+      <?php if ($this->session->flashdata('selesai')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('selesai'); ?>
+        </div>
+      <?php endif ?>
+      <?php if ($this->session->flashdata('belumBayar')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('belumBayar'); ?>
+        </div>
+      <?php endif ?>
       <!-- title row -->
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
-            <i class="fa fa-globe"></i> AdminLTE, Inc.
-            <small class="pull-right">Date: 2/10/2014</small>
+            <i class="fa fa-globe"></i>Bukti Transaksi
+           <!--  <small class="pull-right">Tanggal: 2/10/2014</small> -->
           </h2>
         </div>
         <!-- /.col -->
       </div>
       <!-- info row -->
+      <?php  foreach($userLimit as $member ):?>
       <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
-          From
+         OPERATOR
           <address>
-            <strong>Admin, Inc.</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (804) 123-5432<br>
-            Email: info@almasaeedstudio.com
+            <strong><?php  echo $member['nama_operator'];?></strong><br>
+            Phone: <?php  echo $member['no_operator'];?><br>
+            Email: <?php  echo $member['email_operator'];?>
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          To
+          Member
           <address>
-            <strong>John Doe</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (555) 539-1037<br>
-            Email: john.doe@example.com
+            <strong><?php  echo $member['nama_member'];?></strong><br>
+            Phone: <?php  echo $member['no_member'];?><br>
+            Email: <?php  echo $member['email_member'];?><br>
+            Address : <?php  echo $member['alamat_member'];?>
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          <b>Invoice #007612</b><br>
+          <b>Invoice</b><br>
           <br>
-          <b>Order ID:</b> 4F3S8J<br>
-          <b>Payment Due:</b> 2/22/2014<br>
-          <b>Account:</b> 968-34567
+          <b>Status Pembayaran:</b> <?php  echo $member['status_bayar'];?><br>
+          <b>Status Pengerjaan:</b> <?php  echo $member['status_cucian'];?><br>
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
 
+    <?php endforeach ;?>
       <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Serial #</th>
-              <th>Description</th>
-              <th>Subtotal</th>
+              <th>No</th>
+              <th>No Transaksi</th>
+              <th>Nama Paket</th>
+              <th>Jumlah Cucian</th>
+              <th>Berat Cuci</th>
+              <th>Harga/KG</th>
+              <th>Total Harga</th>
             </tr>
             </thead>
             <tbody>
+            <?php  foreach($transaksi as $data ):?>
             <tr>
               <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
+              <td><?php  echo $data['id_transaksi'];?></td>
+              <td><?php  echo $data['nama_jenis'];?></td>
+              <td><?php  echo $data['jumlah_cucian'];?></td>
+              <td><?php  echo $data['berat_cuci'];?> Kg</td>
+              <td>Rp.<?php  echo number_format($data['harga']) ;?>,-</td>
+              <td>Rp.<?php  echo number_format($data['total_harga']) ;?>,-</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
-            </tr>
+            <?php endforeach ;?>
             </tbody>
           </table>
         </div>
@@ -166,41 +170,63 @@
       <div class="row">
         <!-- accepted payments column -->
         <div class="col-xs-6">
-          <p class="lead">Payment Methods:</p>
-          <img src="../../dist/img/credit/visa.png" alt="Visa">
-          <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-          <img src="../../dist/img/credit/american-express.png" alt="American Express">
-          <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
-
+          <p class="lead">Perhatian:</p>
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
-            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+            Transaksi yang sudah dibayarkan tidak bisa dibatalkan!
+
           </p>
         </div>
         <!-- /.col -->
-        <div class="col-xs-6">
-          <p class="lead">Amount Due 2/22/2014</p>
 
+        <div class="col-xs-6">
+          <?php foreach($transaksi as $sum): ?>
           <div class="table-responsive">
+            <form action="<?php echo base_url('update_transaksiOperator');?>" method="post">
             <table class="table">
               <tr>
-                <th style="width:50%">Subtotal:</th>
-                <td>$250.30</td>
+                <th style="width:25%">Subtotal:</th>
+                <td>Rp.</td>
+                <td>
+                    <input type="text" name="total_biaya"  value="<?php echo number_format($sum['total_harga']) ;?>"  onkeyup="sum();" class="form-control"  readonly>
+                    <input type="hidden"  id="txt1" value="<?php echo $sum['total_harga'] ;?>"  onkeyup="sum();" class="form-control"  readonly>
+                    <input type="hidden" name="id_transaksi" value="<?php echo $sum['id_transaksi'] ;?>"  class="form-control"  readonly>
+               </td>
+              </tr>
+              <?php foreach($status as $data):
+                  $status_cucian = $data['status_bayar'];
+                  $status_cucian = $data['status_cucian'];
+              ?>
+              <tr>
+                <th>Jumlah Bayar</th>
+                <td>Rp.</td>
+                <td>
+                  <input type="hidden" name="status_bayar" value="<?php echo $data['status_bayar'] ;?>"  class="form-control"  readonly>
+                  <input type="hidden" name="status_cucian" value="<?php echo $data['status_cucian'] ;?>"  class="form-control"  readonly>
+                  <?php if($status_cucian == "Lunas" || $status_cucian == "Dalam Pengerjaan" 
+                    || $status_cucian == "Transaksi Batal"  || $status_cucian == "Selesai Pengerjaan" ){
+                    echo "<input type='text' value='$data[jumlah_pembayaran]' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();'readonly >";
+                  }else{
+                     echo "<input type='text' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();' >";
+                  } 
+                ?>
+                </td>
               </tr>
               <tr>
-                <th>Tax (9.3%)</th>
-                <td>$10.34</td>
+                <th>Kembalian:</th>
+                <td>Rp.</td>
+                <td>
+                  <?php if($status_cucian == "Lunas"){
+                      echo " <input type='text'value='$data[sisa_bayar]' name='sisa_bayar' id='txt3' class='form-control' readonly>";
+                    }else{
+                      echo " <input type='text' name='sisa_bayar' id='txt3' class='form-control' readonly>";
+                    }
+                  ?>
+                </td>
               </tr>
-              <tr>
-                <th>Shipping:</th>
-                <td>$5.80</td>
-              </tr>
-              <tr>
-                <th>Total:</th>
-                <td>$265.24</td>
-              </tr>
+            <?php endforeach;?>
             </table>
           </div>
+        
         </div>
         <!-- /.col -->
       </div>
@@ -210,13 +236,67 @@
       <div class="row no-print">
         <div class="col-xs-12">
           <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
-          </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-            <i class="fa fa-download"></i> Generate PDF
-          </button>
+          
+          <?php
+          $statusCuci = $data['status_cucian'];
+          if($statusCuci == "Transaksi Batal"){
+            echo "
+            <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;'disabled>
+            <i class='fa fa-credit-card'></i> Batalkan Transaksi
+            </button>
+            <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+            style='margin-right: 5px;'disabled>
+            <i class='fa fa-download'></i> Selesai Cuci
+            </button>
+            <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;' disabled>
+            <i class='fa fa-credit-card'></i> Simpan Pembayaran
+            </button>";
+          }else if($statusCuci == "Disimpan"){
+             echo "
+              <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Batalkan Transaksi
+              </button>
+              <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+              style='margin-right: 5px;'disabled>
+              <i class='fa fa-download'></i> Selesai Cuci
+              </button>
+              <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;'>
+              <i class='fa fa-credit-card'></i> Simpan Pembayaran
+              </button>";
+          }else if( $statusCuci == "Selesai Pengerjaan"){
+             echo "
+              <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Batalkan Transaksi
+              </button>
+              <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+              style='margin-right: 5px;'disabled>
+              <i class='fa fa-download'></i> Selesai Cuci
+              </button>
+              <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Simpan Pembayaran
+              </button>";
+          }else if($statusCuci == "Dalam Pengerjaan"){
+             echo "
+              <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Batalkan Transaksi
+              </button>
+              <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+              style='margin-right: 5px;'>
+              <i class='fa fa-download'></i> Selesai Cuci
+              </button>
+              <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Simpan Pembayaran
+              </button>";
+          }
+
+          ?>
+          
+          
+          
         </div>
       </div>
+      <?php endforeach ;?>
+      </form>
     </section>
     <!-- /.content -->
     <div class="clearfix"></div>
@@ -237,5 +317,15 @@
 <script src="<?php echo base_url();?>assets_operator/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets_operator/dist/js/demo.js"></script>
+<script>
+function sum() {
+      var txtFirstNumberValue = document.getElementById('txt1').value;
+      var txtSecondNumberValue = document.getElementById('txt2').value;
+      var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+      if (!isNaN(result)) {
+         document.getElementById('txt3').value = result;
+      }
+}
+</script>
 </body>
 </html>

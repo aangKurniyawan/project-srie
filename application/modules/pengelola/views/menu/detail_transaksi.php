@@ -49,12 +49,32 @@
 
     <!-- Main content -->
     <section class="invoice">
+       <?php if ($this->session->flashdata('tidakUpdate')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('tidakUpdate'); ?>
+        </div>
+      <?php endif ?>
+       <?php if ($this->session->flashdata('bayar')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('bayar'); ?>
+        </div>
+      <?php endif ?>
+      <?php if ($this->session->flashdata('selesai')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('selesai'); ?>
+        </div>
+      <?php endif ?>
+      <?php if ($this->session->flashdata('belumBayar')): ?>
+        <div class="alert alert-danger" role="alert">
+          <?php echo $this->session->flashdata('belumBayar'); ?>
+        </div>
+      <?php endif ?>
       <!-- title row -->
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
             <i class="fa fa-globe"></i>Bukti Transaksi
-            <small class="pull-right">Tanggal: 2/10/2014</small>
+           <!--  <small class="pull-right">Tanggal: 2/10/2014</small> -->
           </h2>
         </div>
         <!-- /.col -->
@@ -136,26 +156,56 @@
           </p>
         </div>
         <!-- /.col -->
+
         <div class="col-xs-6">
-          <p class="lead">Amount Due 2/22/2014</p>
-          <?php foreach($sumBayar as $sum): ?>
+          <?php foreach($transaksi as $sum): ?>
           <div class="table-responsive">
+            <form action="<?php echo base_url('updateTransaksi');?>" method="post">
             <table class="table">
               <tr>
-                <th style="width:50%">Subtotal:</th>
-                <td>Rp. <?php echo number_format($sum['total_biayar']) ;?>,-</td>
+                <th style="width:25%">Subtotal:</th>
+                <td>Rp.</td>
+                <td>
+                    <input type="text" name="total_biaya"  value="<?php echo number_format($sum['total_harga']) ;?>"  onkeyup="sum();" class="form-control"  readonly>
+                    <input type="hidden"  id="txt1" value="<?php echo $sum['total_harga'] ;?>"  onkeyup="sum();" class="form-control"  readonly>
+                    <input type="hidden" name="id_transaksi" value="<?php echo $sum['id_transaksi'] ;?>"  class="form-control"  readonly>
+               </td>
               </tr>
+              <?php foreach($status as $data):
+                  $status_cucian = $data['status_bayar'];
+                  $status_cucian = $data['status_cucian'];
+              ?>
               <tr>
                 <th>Jumlah Bayar</th>
-                <td><input type="text"></td>
+                <td>Rp.</td>
+                <td>
+                  <input type="hidden" name="status_bayar" value="<?php echo $data['status_bayar'] ;?>"  class="form-control"  readonly>
+                  <input type="hidden" name="status_cucian" value="<?php echo $data['status_cucian'] ;?>"  class="form-control"  readonly>
+                  <?php if($status_cucian == "Lunas" || $status_cucian == "Dalam Pengerjaan" 
+                    || $status_cucian == "Transaksi Batal"  || $status_cucian == "Selesai Pengerjaan" ){
+                    echo "<input type='text' value='$data[jumlah_pembayaran]' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();'readonly >";
+                  }else{
+                     echo "<input type='text' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();' >";
+                  } 
+                ?>
+                </td>
               </tr>
               <tr>
                 <th>Kembalian:</th>
-                <td>$5.80</td>
+                <td>Rp.</td>
+                <td>
+                  <?php if($status_cucian == "Lunas"){
+                      echo " <input type='text'value='$data[sisa_bayar]' name='sisa_bayar' id='txt3' class='form-control' readonly>";
+                    }else{
+                      echo " <input type='text' name='sisa_bayar' id='txt3' class='form-control' readonly>";
+                    }
+                  ?>
+                </td>
               </tr>
+            <?php endforeach;?>
             </table>
           </div>
-        <?php endforeach ;?>
+        
         </div>
         <!-- /.col -->
       </div>
@@ -165,13 +215,67 @@
       <div class="row no-print">
         <div class="col-xs-12">
           <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
-          </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-            <i class="fa fa-download"></i> Generate PDF
-          </button>
+          
+          <?php
+          $statusCuci = $data['status_cucian'];
+          if($statusCuci == "Transaksi Batal"){
+            echo "
+            <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;'disabled>
+            <i class='fa fa-credit-card'></i> Batalkan Transaksi
+            </button>
+            <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+            style='margin-right: 5px;'disabled>
+            <i class='fa fa-download'></i> Selesai Cuci
+            </button>
+            <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;' disabled>
+            <i class='fa fa-credit-card'></i> Simpan Pembayaran
+            </button>";
+          }else if($statusCuci == "Disimpan"){
+             echo "
+              <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Batalkan Transaksi
+              </button>
+              <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+              style='margin-right: 5px;'disabled>
+              <i class='fa fa-download'></i> Selesai Cuci
+              </button>
+              <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;'>
+              <i class='fa fa-credit-card'></i> Simpan Pembayaran
+              </button>";
+          }else if( $statusCuci == "Selesai Pengerjaan"){
+             echo "
+              <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Batalkan Transaksi
+              </button>
+              <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+              style='margin-right: 5px;'disabled>
+              <i class='fa fa-download'></i> Selesai Cuci
+              </button>
+              <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Simpan Pembayaran
+              </button>";
+          }else if($statusCuci == "Dalam Pengerjaan"){
+             echo "
+              <button type='submit' name='batal' class='btn btn-danger pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Batalkan Transaksi
+              </button>
+              <button type='submit'  name='selesai' class='btn btn-primary pull-right' 
+              style='margin-right: 5px;'>
+              <i class='fa fa-download'></i> Selesai Cuci
+              </button>
+              <button type='submit' name='bayar' class='btn btn-success pull-right' style='margin-right: 5px;' disabled>
+              <i class='fa fa-credit-card'></i> Simpan Pembayaran
+              </button>";
+          }
+
+          ?>
+          
+          
+          
         </div>
       </div>
+      <?php endforeach ;?>
+      </form>
     </section>
     <!-- /.content -->
     <div class="clearfix"></div>
@@ -192,5 +296,16 @@
 <script src="<?php echo base_url();?>assets_pengelola/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets_pengelola/dist/js/demo.js"></script>
+
+<script>
+function sum() {
+      var txtFirstNumberValue = document.getElementById('txt1').value;
+      var txtSecondNumberValue = document.getElementById('txt2').value;
+      var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+      if (!isNaN(result)) {
+         document.getElementById('txt3').value = result;
+      }
+}
+</script>
 </body>
 </html>

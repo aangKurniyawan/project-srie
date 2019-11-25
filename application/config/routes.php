@@ -15,10 +15,11 @@ $route['translate_uri_dashes'] 	= TRUE;
 /* ROUTE MENU */
 
 /* ROUTE OPERATOR */
-	$route['operator'] 			= "operator/operator_c/index";
-	$route['dataTransaksi'] 	= "operator/operator_c/menu_data_transaksi";
-	$route['profileOperator'] 	= "operator/operator_c/menu_profile";
-	$route['detailTransaksi']   = "operator/operator_c/detail_transaksi";
+	$route['operator'] 				 	= "operator/operator_c/index";
+	$route['dataTransaksi'] 		 	= "operator/operator_c/menu_data_transaksi";
+	$route['profileOperator'] 		 	= "operator/operator_c/menu_profile";
+	$route['detailTransaksi/:any']   	= "operator/operator_c/detail_transaksiOperator";
+	$route['update_transaksiOperator'] 	= "operator/operator_c/update_transaksiOperator";
 /* ROUTE OPERATOR */
 
 /* ROUTE PENGELOLA */
@@ -27,7 +28,7 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['menuService']   		= "pengelola/pengelola_c/menu_service"; 
 	$route['menuTransaksi'] 		= "pengelola/pengelola_c/menu_transaksi";
 	$route['menuProfile']   		= "pengelola/pengelola_c/menu_profile_outlet";
-	$route['profilePengelola'] 		= "pengelola/pengelola_c/menu_profile_pengelola";
+	$route['profilePengelola/:any'] = "pengelola/pengelola_c/menu_profile_pengelola";
 	$route['addUser'] 				= "pengelola/pengelola_c/tambahUser";
 	$route['editUser/:any'] 		= "pengelola/pengelola_c/formEdit/";
 	$route['edit'] 					= "pengelola/pengelola_c/editUser/";
@@ -37,4 +38,15 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['addProfileLaundry'] 	= "pengelola/pengelola_c/tambahProfilelaundry";
 	$route['editProfileLaundry']	= "pengelola/pengelola_c/editProfileLaundry";
 	$route['transaksi']				= "pengelola/pengelola_c/tambah_transaksi";
+	$route['detail/:any'] 			= "pengelola/pengelola_c/detail_transaksi";
+	$route['updateTransaksi'] 		= "pengelola/pengelola_c/update_transaksi";
 /* ROUTE PENGELOLA */
+
+/* ROUTE MEMBER */
+	$route['lihat'] 				= "member/member_c/lihat_status";
+/* ROUTE MEMBER */
+
+/* ROUTE LOGIN */
+	$route['login'] 				= "login/login_c/action_login/";
+	$route['logout']				= "login/login_c/logout/";
+/* ROUTE LOGIN */
