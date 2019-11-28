@@ -1,13 +1,8 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<title>Home |Member</title>
+<title>Laundry |Transaksi Saya</title>
 <!-- Meta-Tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -58,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li class="first-list"><a class="active" href="<?php echo site_url('berandaMember/');?>">Profile</a></li>
+							<li class="first-list"><a class="active" href="<?php echo site_url('berandaMember/').$this->session->userdata("id_user");?>">Profile</a></li>
 							<li><a href="<?php echo site_url('transaksiMember/').$this->session->userdata("id_user");?>">Transaksi Saya</a></li>
 							<li><a href="<?php echo site_url('pesanOnline/').$this->session->userdata("id_user");?>">Pesan Online</a></li>
 						<!-- 	<li><a href="<?php echo site_url('kontak/');?>">Kontak</a></li> -->
@@ -81,64 +76,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- contact -->
 	<div class="contact">
 		<div class="container">
-		<h4 class="tittles-w3agileits">Profile <span>Member</span></h4>
-		<?php foreach($profileMember as $data){?>
+		<!-- <h4 class="tittles-w3agileits">Kontak<span>Kami</span></h4> -->
 			<div class="col-md-4 wthree_contact_left">
-				<h6><?php echo $data['nama_user'];?></h6>
-				<h6><?php echo $data['email'];?></h6>
-				<h6><?php echo $data['no_telepon'];?></h6>
-				<p class="para-w3-agile"><?php echo $data['alamat'];?></p>
-				<!-- <div class="info-img-agileits">
-					<div class="info1">
-						<img src="assets_pengelola/image/user_image/<?php echo $data['foto'];?>" width="100%">
-					</div>
-				</div> -->
-		
+				<h6>Tentang Kami</h6>
+				<p class="para-w3-agile">Laundry Sunrise <span>Adalah usaha dibidang jasa laundry</span>
+				 yang mengutamakan kualitas pelayanan kepada
+					<span>pelanggan</span> yang sudah percaya kepada kami</p>
+				<div class="info-img-agileits">
+					<div class="info1"></div>
+					<div class="info2"></div>
+					<div class="info3"></div>
+					<div class="clearfix"> </div>
+				</div>
+				<h6>Jam Operasional</h6>
+				<ul>
+					<li><span>Senin-Jum'at</span> 9:00 pagi - 10:00 malam </li>
+					<li><span>Sabtu & Minggu</span> 9:00 pagi - 12:00 malam</li>
+				</ul>
 			</div>
-			 <?php if ($this->session->flashdata('terkirim')): ?>
-	        <div class="alert alert-success" role="alert">
-	          <?php echo $this->session->flashdata('terkirim'); ?>
-	        </div>
-	        <?php endif; ?>
 			<div class="col-md-8 wthree_contact_left">
-				<h6>Ubah data pribadi anda</h6>
-				<form action="<?php echo base_url('editMember');?>" method="post" enctype="multipart/form-data">
-						<div class="col-md-6 wthree_contact_left_grid <?php echo form_error('nama_user') ? 'is-invalid':'' ?>">
-							<input type="hidden" name="id_user" value="<?php echo $data['id_user'] ?>" required="">
-							<input type="text" name="nama_user" value="<?php echo $data['nama_user'] ?>" required="">
-							<input type="email" name="email" value="<?php echo $data['email'] ?>"  required="" readonly>
-							<div class="invalid-feedback">
-		                      <?php echo form_error('nama_user') ?>
-		                    </div>
-							<!-- <input type="email" name="Email" placeholder="Email" required=""> -->
-							<select class="form-control <?php echo form_error('gender') ? 'is-invalid':'' ?>" name="gender">
-								<option value="<?php echo $data['gender'] ?>"><?php echo $data['gender'] ?></option>
-								<option>-Pilih Jenis Kelamin-</option>
-								<option value="laki-laki">Laki-laki</option>
-								<option value="perempuan">Perempuan</option>
-							</select>
-						</div>
-						<div class="col-md-6 wthree_contact_left_grid agileits-login">
-							<input type="text" name="no_telepon" value="<?php echo $data['no_telepon'] ?>" required="">
-							<input type="password" class="password " name="password" value="<?php echo $data['password'] ?>" required=""/>
-							<!-- <input class="form-control"
-	                        type="hidden" name="old_image"  value="<?php echo $data['foto'] ?>" />
-	                       <input class="form-control"
-	                        type="file" name="foto"  value="<?php echo $data['foto'] ?>" /> -->
-							</div>
-						<div class="clearfix"> </div>
-						<textarea name="alamat"  required=""><?php echo $data['alamat'] ?></textarea>
-						<input type="submit" value="Simpan Perubahan">
-						<input type="reset" value="Batal">
-					</form>
+				<h6>Status Transaksi Anda</h6>
+				<div class="col-md-12 wthree_contact_left_grid">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th>No Transaksi</th>
+							<th>Jenis Cuci</th>
+							<th>Berat Cuci</th>
+							<th>Total Bayar</th>
+							<th>Status Cucian</th>
+							<th>Status Bayar</th>
+						</tr>
+						</thead>
+						<tbody>
+							<?php foreach($transaksi as $row){ ?>
+							<tr>
+								<td><?php echo $row['id_transaksi'];?></td>
+								<td><?php echo $row['nama_jenis'];?></td>
+								<td><?php echo $row['berat_cuci'];?> Kg</td>
+								<td>Rp <?php echo number_format($row['total_harga']) ;?>,-</td>
+								<td><?php echo $row['status_cucian'];?></td>
+								<td><?php echo $row['status_bayar'];?></td>
+							</tr>
+							<?php } ?>
+						</table>
+					</table>
+				</div>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<?php } ?>
 <!-- //contact -->
 <!--footer -->
-	<?php $this->load->view('member/menu/footer'); ?>
+	<?php $this->load->view('menu/footer'); ?>
 <!--//footer-->	
 <!-- modal -->
 	<div class="modal about-modal w3-agileits fade" id="myModal2" tabindex="-1" role="dialog">

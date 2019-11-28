@@ -26,6 +26,7 @@
 				$email 		= $cekUser[0]['email'];
 				$level 		= $cekUser[0]['level'];
 				$foto 		= $cekUser[0]['foto'];
+				$no_telepon = $cekUser[0]['no_telepon'];
 				//print_r($level);die;
 				$data_session = array(
 						"id_user" 	=> $id_user,
@@ -33,11 +34,14 @@
 						"email" 	=> $email,
 						"level" 	=> $level,
 						"foto"		=> $foto,
+						"no_telepon"=> $no_telepon,
 						"status" 	=> "login"
 					);
 				if($level == 'Member'){
 					$this->session->set_userdata($data_session);
 					$data['profile'] = $this->Member_m->getProfile();
+					$data['profileMember'] = $this->Member_m->getProfileMember($id_user);
+					//print_r($id_user);die;
 	 				$this->load->view('member/menu/home',$data);
 				}else if($level == 'Operator'){
 					$this->session->set_userdata($data_session);
@@ -50,18 +54,27 @@
 					$this->load->view('operator/home_operator',$data);
 				}else if($level == 'Pengelola'){
 					$this->session->set_userdata($data_session);
-					$this->load->view('Pengelola/home_pengelola');
+					$data['bulananDisimpan'] 	= $this->Pengelola_m->getTransaksiBulananDisimpan();
+					$data['bulananProses'] 		= $this->Pengelola_m->getTransaksiBulananDiproses();
+					$data['bulananSelesai'] 	= $this->Pengelola_m->getTransaksiBulananSelesai();
+					$data['bulananBatal'] 		= $this->Pengelola_m->getTransaksiBulananBatal();
+					$data['transaksi'] 			= $this->Pengelola_m->getTransaksi();
+					$this->load->view('Pengelola/home_pengelola',$data);
 				}
 				
 			}else{
 				$data['profile'] = $this->Member_m->getProfile();
-	 			$this->load->view('home_member',$data);
+				echo "<script>
+						alert('Username Atau Password Salah');
+					</script>";
+	 			$this->load->view('member/home_member',$data);
 			}
 		}		
 
 		public function logout(){
 			$this->session->sess_destroy();
 			$data['profile'] = $this->Member_m->getProfile();
+			$data['feedback'] = $this->Pengelola_m->getDataFeedback();
 			$this->load->view('member/home_member',$data);
 		}
 	}

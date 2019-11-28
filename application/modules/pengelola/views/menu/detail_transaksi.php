@@ -185,7 +185,7 @@
                     || $status_cucian == "Transaksi Batal"  || $status_cucian == "Selesai Pengerjaan" ){
                     echo "<input type='text' value='$data[jumlah_pembayaran]' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();'readonly >";
                   }else{
-                     echo "<input type='text' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();' >";
+                     echo "<input type='text' name='jumlah_pembayaran' id='txt2' class='form-control' onkeyup='sum();' required>";
                   } 
                 ?>
                 </td>

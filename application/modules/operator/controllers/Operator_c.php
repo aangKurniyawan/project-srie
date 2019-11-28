@@ -110,5 +110,41 @@
 			$data['status']	   = $this->Pengelola_m->userTransaksiLimit($id_transaksi);	
 			$this->load->view('menu/detail_transaksi',$data);
 		}
+
+		public function dataPesanOnline(){
+			$data['online'] = $this->Pengelola_m->getDataPesanOnline();
+			$data['jenis']  = $this->Jenis_cuci_m->getAllJenisCuci();
+			$this->load->view("menu/data_pesanan_online_operator",$data);
+		}
+
+		public function editPesananOlineOperator(){
+			$id_transaksi 	= $this->input->post("id_transaksi");
+			$id_member 		= $this->input->post("id_member");
+			$id_operator 	= $this->input->post("id_operator");
+			$id_jenis 		= $this->input->post("id_jenis");
+			$berat_cuci 	= $this->input->post("berat_cuci");
+			$harga 			= $this->Jenis_cuci_m->cek_harga($id_jenis);
+			$total_harga 	= $berat_cuci*$harga[0]['harga'];
+
+			$update = array(
+				"id_member" 	=> $id_member,
+				"id_jenis" 		=> $id_jenis,
+				"id_operator" 	=> $id_operator,
+				"berat_cuci" 	=> $berat_cuci,
+				"total_harga" 	=> $total_harga,
+				"status_bayar"  => "Belum Lunas",
+				"status_cucian" => "Disimpan"
+			);
+			//print_r($update);die;
+			$where = array(
+				"id_transaksi" => $id_transaksi
+			);
+			$this->Pengelola_m->updateTransaksiOnline($update,$where);
+			$data['transaksi'] = $this->Pengelola_m->detailTransaksiAfterAdd($id_member);
+			$data['sumBayar']  = $this->Pengelola_m->getSumBayar($id_transaksi);
+			$data['userLimit'] = $this->Pengelola_m->userTransaksiLimit($id_transaksi);
+			$data['status']	   = $this->Pengelola_m->userTransaksiLimit($id_transaksi);	
+			$this->load->view('menu/detail_transaksi',$data);
+		}
 	}
 ?>

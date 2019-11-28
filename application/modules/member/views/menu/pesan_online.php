@@ -95,39 +95,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div> -->
 		
 			</div>
-			 <?php if ($this->session->flashdata('terkirim')): ?>
+			 <?php if ($this->session->flashdata('update')): ?>
 	        <div class="alert alert-success" role="alert">
-	          <?php echo $this->session->flashdata('terkirim'); ?>
+	          <?php echo $this->session->flashdata('update'); ?>
 	        </div>
 	        <?php endif; ?>
 			<div class="col-md-8 wthree_contact_left">
-				<h6>Ubah data pribadi anda</h6>
-				<form action="<?php echo base_url('editMember');?>" method="post" enctype="multipart/form-data">
+				<h6>Silahkan pilih paket loundry anda</h6>
+				<form action="<?php echo base_url('pesan');?>" method="post" enctype="multipart/form-data">
 						<div class="col-md-6 wthree_contact_left_grid <?php echo form_error('nama_user') ? 'is-invalid':'' ?>">
-							<input type="hidden" name="id_user" value="<?php echo $data['id_user'] ?>" required="">
-							<input type="text" name="nama_user" value="<?php echo $data['nama_user'] ?>" required="">
+							<input type="hidden" name="id_member" value="<?php echo $data['id_user'] ?>" required="" readonly>
+							<input type="text" name="nama_user" value="<?php echo $data['nama_user'] ?>" required="" readonly>
 							<input type="email" name="email" value="<?php echo $data['email'] ?>"  required="" readonly>
 							<div class="invalid-feedback">
 		                      <?php echo form_error('nama_user') ?>
 		                    </div>
 							<!-- <input type="email" name="Email" placeholder="Email" required=""> -->
-							<select class="form-control <?php echo form_error('gender') ? 'is-invalid':'' ?>" name="gender">
-								<option value="<?php echo $data['gender'] ?>"><?php echo $data['gender'] ?></option>
-								<option>-Pilih Jenis Kelamin-</option>
-								<option value="laki-laki">Laki-laki</option>
-								<option value="perempuan">Perempuan</option>
+							<select class="form-control" name="id_jenis">
+								<option>-Pilih Jenis Loundry-</option>
+								<?php foreach($jenis as $row): ?>
+                                    <option value="<?php echo $row['id_jenis_cuci'];?>">
+                                      <?php echo $row['nama_jenis'];?> 
+                                    </option>
+                                <?php endforeach ;?>
 							</select>
 						</div>
 						<div class="col-md-6 wthree_contact_left_grid agileits-login">
-							<input type="text" name="no_telepon" value="<?php echo $data['no_telepon'] ?>" required="">
-							<input type="password" class="password " name="password" value="<?php echo $data['password'] ?>" required=""/>
-							<!-- <input class="form-control"
-	                        type="hidden" name="old_image"  value="<?php echo $data['foto'] ?>" />
-	                       <input class="form-control"
-	                        type="file" name="foto"  value="<?php echo $data['foto'] ?>" /> -->
-							</div>
-						<div class="clearfix"> </div>
-						<textarea name="alamat"  required=""><?php echo $data['alamat'] ?></textarea>
+							<input type="text" name="no_telepon" value="<?php echo $data['no_telepon'] ?>" required="" readonly>
+							<input type="text" class="password" name="jumlah_cucian" placeholder="jumlah cucian" required=""/>
+						</div>
+						<div class="clearfix"> </div><br>
 						<input type="submit" value="Simpan Perubahan">
 						<input type="reset" value="Batal">
 					</form>

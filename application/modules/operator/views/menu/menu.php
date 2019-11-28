@@ -25,6 +25,11 @@
              <span>Data Transaksi</span>
           </a>
         </li>
+        <li>
+          <a href="<?php echo base_url('dataPesanOnlineOperator') ?>">
+            <i class="fa fa-th"></i> <span>Data Pesanan Online</span>
+          </a>
+        </li>
         <li class="">
           <a href="<?php echo site_url('profileOperator/');?>">
              <i class="fa fa-male"></i>

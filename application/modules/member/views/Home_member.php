@@ -30,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="w3-header-bottom">
 		<?php foreach($profile as $data): ?>
 		<div class="container"> 
-				<h1><a href="index.html"><span class="letter"><?php echo $data['nama_outlet']?></span><span class="square"></span></a></h1>	
+			<h1><a href="index.html"><span class="letter"><?php echo $data['nama_outlet']?></span><span class="square"></span></a></h1>	
 			<div class="header-w3-top">
 				<div class="agileinfo-phone">
 				<div class="phone-wthree-left">
@@ -58,8 +58,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="<?php echo site_url('service/');?>">Layanan</a></li>
 							<li><a href="<?php echo site_url('daftarMember/');?>">Daftar</a></li>
 							<li><a href="#myModal2" data-toggle="modal">Login</a></li>
-						<!-- 	<li><a href="<?php echo site_url('kontak/');?>">Kontak</a></li> -->
-							<li><a href="<?php echo site_url('kontak/');?>">Transaksi</a></li>
+							<li><a href="<?php echo site_url('kontak/');?>">Kontak</a></li>
+							<!-- <li><a href="<?php echo site_url('kontak/');?>">Transaksi</a></li> -->
 						</ul>	
 					<div class="clearfix"> </div>
 				</div>	
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h6>Lihat Status Transaksi Anda <span>Disini </span></h6>
 		<p class="para-w3-agile">Masukan Kode Transaksi</p>
 		<form action="<?php echo base_url('lihat');?>" method="post">		 
-			<input type="text" name="id_transaksi"class="text" required />
+			<input type="text" name="id_transaksi" class="text" required />
 			<input type="submit" value="Cari" />					 
 		</form>
 		<div class="clearfix"></div>
@@ -136,74 +136,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="test">
 	<div class="container">
 	<div class="col-md-3 test-left-agileinfo">
-	<h3 class="sub-tittle-agileits"><span>T</span>estimonials</h3>
+	<h3 class="sub-tittle-agileits"><span>T</span>estimonial</h3>
 	</div>
 		<div class="col-md-9 test-gr">
 			<div class=" test-gri1">
 				<div id="owl-demo2" class="owl-carousel">
+					<?php foreach($feedback as $data): ?>
 					<div class="agile">
 						<div class="test-grid">
 							<div class="col-md-8 test-grid1">
-								<p class="para-w3-agile"><i class="fa fa-quote-left"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
-								Lorem ipsum dolor .</p>
+								<p class="para-w3-agile"><i class="fa fa-quote-left"></i><?php echo $data['message'];?></p>
 								<div class="test-info-w3ls">
-									<h4>Stella Franklin</h4>
-									<span>Lorem Ipsum</span>
+									<h4><?php echo $data['nama_user'];?></h4>
+									<span><?php echo $data['subject'];?></span>
 								</div>
 							</div>	
 							<div class="col-md-4 test-grid2">
-								<img src="<?php echo base_url();?>assets_member/images/t1.jpg" alt="" class="img-r">
+								<img src="<?php echo base_url();?>assets_pengelola/image/Screenshot_1.PNG" alt="" class="img-r">
 							</div>
 						</div>	
-						<div class="clearfix"></div>
 					</div>
-					<div class="agile">
-						<div class="test-grid">
-							<div class="col-md-8 test-grid1">
-								<p class="para-w3-agile"><i class="fa fa-quote-left"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
-								Lorem ipsum dolor.</p>
-							<div class="test-info-w3ls">
-								<h4>Tim Mathis</h4>
-								<span>Lorem Ipsum</span>
-							</div>
-						</div>	
-						<div class="col-md-4 test-grid2">
-							<img src="<?php echo base_url();?>assets_member/images/t2.jpg" alt="" class="img-r">
-						</div>
-					</div>	
-				<div class="clearfix"></div>
+					<?php endforeach;?>
 			</div>
-			<div class="agile">
-				<div class="test-grid">
-					<div class="col-md-8 test-grid1">
-						<p class="para-w3-agile"><i class="fa fa-quote-left"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
-						Lorem ipsum dolor .</p>
-					<div class="test-info-w3ls">
-						<h4>Patrick Jean</h4>
-						<span>Lorem Ipsum</span>
-					</div>
-				</div>	
-				<div class="col-md-4 test-grid2">
-					<img src="<?php echo base_url();?>assets_member/images/t3.jpg" alt="" class="img-r">
-				</div>
-			</div>	
-			<div class="clearfix"></div>
 		</div>
-		<div class="agile">
-			<div class="test-grid">
-				<div class="col-md-8 test-grid1">
-					<p class="para-w3-agile"><i class="fa fa-quote-left"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
-					Lorem ipsum dolor .</p>
-					<div class="test-info-w3ls">
-						<h4>Helen Tompson</h4>
-						<span>Lorem Ipsum</span>
-					</div>
-				</div>	
-				<div class="col-md-4 test-grid2">
-					<img src="<?php echo base_url();?>assets_member/images/t4.jpg" alt="" class="img-r">
-				</div>
-			</div>	
-		<div class="clearfix"></div>
 	</div>	
 </div>
 </div>	

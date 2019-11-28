@@ -229,7 +229,8 @@
 		}
 
 		public function getTransaksi(){
-			$query = $this->db->query("select a.*,b.nama_user,b.no_telepon,c.nama_jenis from tb_transaksi a 
+			$query = $this->db->query("select a.*,b.nama_user,b.no_telepon,
+			c.nama_jenis from tb_transaksi a 
 			left join tb_user b on a.id_member = b.id_user 
 			left join tb_jenis_cuci c on a.id_jenis = c.id_jenis_cuci
 			where CURDATE() ORDER BY id_transaksi DESC ")->result_array();
@@ -342,6 +343,33 @@
 			status_cucian='Transaksi Batal'
 			GROUP BY YEAR(created),MONTH(created),status_cucian")->result_array();
 			return $query;
+		}
+
+		public function getDataFeedback(){
+			$query = $this->db->query("select a.*,b.* from tb_feedback a 
+			left join tb_user b on a.id_member = b.id_user
+			where status='posting'
+			ORDER BY a.id_feedback DESC LIMIT 10")->result_array();
+			return $query;
+		}
+
+		public function updateFeedback($insert,$where){
+			$this->db->where($where);
+			$this->db->update("tb_feedback",$insert);
+		}
+
+		public function getDataPesanOnline(){
+			$query = $this->db->query("select a.*,b.nama_user,b.no_telepon,b.alamat,
+			c.nama_jenis from tb_transaksi a 
+			left join tb_user b on a.id_member = b.id_user 
+			left join tb_jenis_cuci c on a.id_jenis = c.id_jenis_cuci
+			where a.status_cucian='Terkirim' ORDER BY id_transaksi DESC ")->result_array();
+			return $query;
+		}
+
+		public function updateTransaksiOnline($update,$where){
+			$this->db->where($where);
+			$this->db->update("tb_transaksi",$update);	
 		}
  	}
 ?>

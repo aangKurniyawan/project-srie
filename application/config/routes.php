@@ -20,6 +20,8 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['profileOperator'] 		 	= "operator/operator_c/menu_profile";
 	$route['detailTransaksi/:any']   	= "operator/operator_c/detail_transaksiOperator";
 	$route['update_transaksiOperator'] 	= "operator/operator_c/update_transaksiOperator";
+	$route['dataPesanOnlineOperator']	= "operator/operator_c/dataPesanOnline";
+	$route['editPesananOlineOperator'] 	= "operator/operator_c/editPesananOlineOperator";
 /* ROUTE OPERATOR */
 
 /* ROUTE PENGELOLA */
@@ -40,10 +42,21 @@ $route['translate_uri_dashes'] 	= TRUE;
 	$route['transaksi']				= "pengelola/pengelola_c/tambah_transaksi";
 	$route['detail/:any'] 			= "pengelola/pengelola_c/detail_transaksi";
 	$route['updateTransaksi'] 		= "pengelola/pengelola_c/update_transaksi";
+	$route['dataFeedback'] 			= "pengelola/pengelola_c/DataFeedback";
+	$route['editFeed'] 				= "pengelola/pengelola_c/editFeedback";
+	$route['dataPesanOnline']		= "pengelola/pengelola_c/dataPesanOnline";
+	$route['editPesananOline'] 		= "pengelola/pengelola_c/editPesananOline";
 /* ROUTE PENGELOLA */
 
 /* ROUTE MEMBER */
 	$route['lihat'] 				= "member/member_c/lihat_status";
+	$route['editMember'] 			= "member/member_c/editProfileMember";
+	$route['transaksiMember/:any']  = "member/member_c/dataTransaksiMember";
+	$route['berandaMember']			= "member/member_c/index";
+	$route['feedback']				= "member/member_c/feedbackMember";
+	$route['addFeedback'] 			= "member/member_c/addFeedback";
+	$route['pesanOnline/:any']		= "member/member_c/menuPesanOnline";
+	$route['pesan'] 				= "member/member_c/tambahPesanOnline";
 /* ROUTE MEMBER */
 
 /* ROUTE LOGIN */
